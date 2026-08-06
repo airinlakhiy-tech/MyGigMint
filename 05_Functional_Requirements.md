@@ -1,0 +1,122 @@
+# MyGigMint – Functional Requirements
+
+**Document Version:** 1.0  
+**Document Type:** Functional Requirements Specification (FRS)  
+**Project:** MyGigMint
+
+---
+
+# 1. Introduction
+
+This document defines the complete functional behavior of the MyGigMint platform.
+
+Every module described here represents a feature that must be implemented during development.
+
+---
+
+# 2. Authentication Module
+
+## Features
+
+- User Registration
+- User Login
+- Google Login
+- Email Verification
+- Password Reset
+- Change Password
+- Logout
+- Remember Me
+- Session Management
+
+### Functional Requirements
+
+FR-001 Users shall register using email.
+
+FR-002 Users shall login securely.
+
+FR-003 Passwords shall be encrypted.
+
+FR-004 Email verification is required.
+
+FR-005 Users can reset forgotten passwords.
+
+FR-006 Login attempts shall be rate limited.
+
+FR-007 Sessions expire automatically.
+
+FR-008 Users may logout from all devices.
+
+---
+
+# 3. User Profile Module
+
+## Features
+
+- Edit Profile
+- Upload Avatar
+- Bio
+- Country
+- Skills
+- Social Links
+- Identity Verification
+
+### Functional Requirements
+
+FR-020 Users can update profile.
+
+FR-021 Users can upload profile picture.
+
+FR-022 Users can verify phone.
+
+FR-023 Users can verify email.
+
+FR-024 Users can upload identity documents.
+
+FR-025 Users can manage notification preferences.
+
+---
+
+# 4. Dashboard Module
+
+Workers shall be able to:
+
+- View earnings
+- View pending jobs
+- View completed jobs
+- View wallet balance
+- View referral income
+- View notifications
+
+Employers shall be able to:
+
+- View active jobs
+- View applicants
+- View spending
+- View reports
+
+Admins shall be able to:
+
+- View system statistics
+- View revenue
+- View users
+- View withdrawals
+- View fraud alerts
+
+---
+
+# 5. General Requirements
+
+The platform shall:
+
+- Be responsive
+- Support desktop and mobile
+- Validate all forms
+- Display proper error messages
+- Support pagination
+- Support search
+- Support filtering
+- Support sorting
+
+---
+
+# End of Part 1
