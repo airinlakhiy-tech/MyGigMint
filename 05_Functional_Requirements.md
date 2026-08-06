@@ -120,3 +120,117 @@ The platform shall:
 ---
 
 # End of Part 1
+---
+
+# Part 2 – Wallet, Referral & Communication Modules
+
+## 6. Wallet Management
+
+### 6.1 Wallet Dashboard
+
+The platform shall provide:
+
+- Current Balance
+- Pending Balance
+- Total Earnings
+- Total Withdrawn
+- Transaction Summary
+
+### 6.2 Deposit
+
+The system shall support:
+
+- Manual Deposit
+- Automatic Deposit
+- Payment Verification
+- Deposit History
+
+### 6.3 Withdraw
+
+The system shall support:
+
+- Withdraw Request
+- Minimum Withdraw Amount
+- Payment Method Selection
+- Withdraw History
+- Admin Approval
+- Withdraw Status Tracking
+
+### 6.4 Transactions
+
+The system shall record:
+
+- Job Earnings
+- Referral Earnings
+- Bonus Earnings
+- Deposits
+- Withdrawals
+- Refunds
+
+---
+
+# 7. Referral System
+
+The platform shall provide:
+
+- Referral Link
+- Referral Code
+- Invite Friends
+- Referral Rewards
+- Referral Statistics
+- Multi-level Referral Support
+- Referral Bonus Tracking
+
+---
+
+# 8. Notification System
+
+The platform shall support:
+
+- In-App Notifications
+- Email Notifications
+- SMS Notifications
+- Push Notifications
+- Real-time Alerts
+
+---
+
+# 9. Messaging System
+
+Users shall be able to:
+
+- Send Messages
+- Receive Messages
+- Share Files
+- Block Users
+- Report Abuse
+
+---
+
+# 10. Ratings & Reviews
+
+Users shall be able to:
+
+- Rate Employers
+- Rate Workers
+- Write Reviews
+- Report Fake Reviews
+
+---
+
+# 11. Search & Filter
+
+The system shall support:
+
+- Job Search
+- User Search
+- Category Filter
+- Country Filter
+- Skill Filter
+- Price Filter
+- Sorting
+- Pagination
+
+---
+
+# End of Part 2
