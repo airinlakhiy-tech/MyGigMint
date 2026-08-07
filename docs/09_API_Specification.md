@@ -446,3 +446,238 @@ Validation Error
 ---
 
 # End of Part 2
+---
+
+# Part 3 – Wallet, Payment & Referral APIs
+
+# 11. Wallet APIs
+
+## Get Wallet Balance
+
+GET /wallet
+
+Authentication
+
+User Required
+
+Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "available_balance": 250.00,
+    "pending_balance": 40.00,
+    "total_earned": 850.00,
+    "total_withdrawn": 560.00
+  }
+}
+```
+
+---
+
+## Wallet Transaction History
+
+GET /wallet/transactions
+
+Query Parameters
+
+- page
+- limit
+- type
+- start_date
+- end_date
+
+---
+
+## Wallet Summary
+
+GET /wallet/summary
+
+---
+
+# 12. Deposit APIs
+
+## Create Deposit
+
+POST /wallet/deposit
+
+Request
+
+```json
+{
+  "payment_method": "bkash",
+  "amount": 500
+}
+```
+
+---
+
+## Upload Payment Proof
+
+POST /wallet/deposit/{id}/proof
+
+---
+
+## Deposit History
+
+GET /wallet/deposits
+
+---
+
+# 13. Withdrawal APIs
+
+## Request Withdrawal
+
+POST /wallet/withdraw
+
+Request
+
+```json
+{
+  "payment_method": "Nagad",
+  "account_number": "017XXXXXXXX",
+  "amount": 300
+}
+```
+
+---
+
+## Withdrawal History
+
+GET /wallet/withdrawals
+
+---
+
+## Cancel Withdrawal
+
+DELETE /wallet/withdrawals/{id}
+
+---
+
+# 14. Payment Methods API
+
+## List Payment Methods
+
+GET /payment-methods
+
+---
+
+## Payment Method Details
+
+GET /payment-methods/{id}
+
+---
+
+# 15. Referral APIs
+
+## Get Referral Information
+
+GET /referrals
+
+---
+
+## Referral Statistics
+
+GET /referrals/statistics
+
+---
+
+## Referral Earnings
+
+GET /referrals/earnings
+
+---
+
+## Referral Tree
+
+GET /referrals/tree
+
+---
+
+# 16. Notification APIs
+
+## Get Notifications
+
+GET /notifications
+
+---
+
+## Mark Notification as Read
+
+PUT /notifications/{id}/read
+
+---
+
+## Mark All Notifications as Read
+
+PUT /notifications/read-all
+
+---
+
+## Delete Notification
+
+DELETE /notifications/{id}
+
+---
+
+# 17. Premium Membership APIs
+
+## Premium Plans
+
+GET /premium/plans
+
+---
+
+## Purchase Premium
+
+POST /premium/purchase
+
+Request
+
+```json
+{
+  "plan_id": 1,
+  "payment_method": "wallet"
+}
+```
+
+---
+
+## My Subscription
+
+GET /premium/subscription
+
+---
+
+## Cancel Subscription
+
+DELETE /premium/subscription
+
+---
+
+# Standard API Response
+
+Success
+
+```json
+{
+  "success": true,
+  "message": "Request completed successfully.",
+  "data": {}
+}
+```
+
+Error
+
+```json
+{
+  "success": false,
+  "message": "An error occurred.",
+  "errors": {}
+}
+```
+
+---
+
+# End of Part 3
