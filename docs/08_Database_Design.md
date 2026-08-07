@@ -405,3 +405,226 @@ Reviews
 ---
 
 # End of Part 2
+---
+
+# Part 3 – Wallet & Financial Database
+
+## 12. Wallets
+
+Stores each user's wallet.
+
+### Columns
+
+- id
+- user_id
+- available_balance
+- pending_balance
+- total_earned
+- total_withdrawn
+- currency
+- status
+- created_at
+- updated_at
+
+Indexes
+
+- user_id
+
+---
+
+## 13. Wallet Transactions
+
+Stores all wallet transactions.
+
+### Columns
+
+- id
+- wallet_id
+- user_id
+- transaction_type
+- amount
+- balance_before
+- balance_after
+- reference_number
+- description
+- status
+- created_at
+
+Transaction Types
+
+- Deposit
+- Withdrawal
+- Job Reward
+- Referral Bonus
+- Admin Adjustment
+- Refund
+
+Indexes
+
+- wallet_id
+- user_id
+- transaction_type
+
+---
+
+## 14. Deposits
+
+Stores user deposits.
+
+### Columns
+
+- id
+- user_id
+- payment_method_id
+- amount
+- transaction_id
+- payment_proof
+- status
+- verified_by
+- verified_at
+- created_at
+
+Status
+
+- Pending
+- Approved
+- Rejected
+
+---
+
+## 15. Withdrawals
+
+Stores withdrawal requests.
+
+### Columns
+
+- id
+- user_id
+- payment_method_id
+- amount
+- fee
+- payable_amount
+- account_number
+- transaction_id
+- status
+- approved_by
+- approved_at
+- created_at
+
+Indexes
+
+- user_id
+- status
+
+---
+
+## 16. Payment Methods
+
+Stores supported payment methods.
+
+### Columns
+
+- id
+- name
+- type
+- minimum_amount
+- maximum_amount
+- processing_fee
+- status
+
+Examples
+
+- bKash
+- Nagad
+- Rocket
+- Bank Transfer
+- USDT
+
+---
+
+## 17. Referral System
+
+Stores referral relationships.
+
+### Columns
+
+- id
+- referrer_id
+- referred_user_id
+- referral_level
+- referral_bonus
+- created_at
+
+---
+
+## 18. Referral Earnings
+
+Stores referral commission history.
+
+### Columns
+
+- id
+- referral_id
+- earner_id
+- amount
+- source
+- created_at
+
+---
+
+## 19. Bonus History
+
+Stores bonus rewards.
+
+### Columns
+
+- id
+- user_id
+- bonus_type
+- amount
+- description
+- created_at
+
+Bonus Types
+
+- Daily Bonus
+- Weekly Bonus
+- Monthly Bonus
+- Promotional Bonus
+- Achievement Bonus
+
+---
+
+# Relationships
+
+Users
+↓
+Wallets
+
+Wallets
+↓
+Wallet Transactions
+
+Users
+↓
+Deposits
+
+Users
+↓
+Withdrawals
+
+Users
+↓
+Referrals
+
+Referrals
+↓
+Referral Earnings
+
+Users
+↓
+Bonus History
+
+---
+
+# End of Part 3
