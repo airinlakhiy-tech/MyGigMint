@@ -681,3 +681,272 @@ Error
 ---
 
 # End of Part 3
+---
+
+# Part 4 – Admin, AI & System APIs
+
+# 18. Admin APIs
+
+## Admin Dashboard
+
+GET /admin/dashboard
+
+Description
+
+Returns platform statistics including users, jobs, revenue, wallet activity, and reports.
+
+Authentication
+
+Admin Only
+
+---
+
+## User Management
+
+GET /admin/users
+
+GET /admin/users/{id}
+
+PUT /admin/users/{id}
+
+DELETE /admin/users/{id}
+
+PUT /admin/users/{id}/suspend
+
+PUT /admin/users/{id}/activate
+
+---
+
+## Job Management
+
+GET /admin/jobs
+
+PUT /admin/jobs/{id}
+
+DELETE /admin/jobs/{id}
+
+PUT /admin/jobs/{id}/approve
+
+PUT /admin/jobs/{id}/reject
+
+---
+
+## Payment Management
+
+GET /admin/deposits
+
+PUT /admin/deposits/{id}/approve
+
+PUT /admin/deposits/{id}/reject
+
+GET /admin/withdrawals
+
+PUT /admin/withdrawals/{id}/approve
+
+PUT /admin/withdrawals/{id}/reject
+
+---
+
+## Reports Management
+
+GET /admin/reports
+
+PUT /admin/reports/{id}/resolve
+
+DELETE /admin/reports/{id}
+
+---
+
+## Support Ticket Management
+
+GET /admin/support
+
+GET /admin/support/{id}
+
+POST /admin/support/{id}/reply
+
+PUT /admin/support/{id}/close
+
+---
+
+# 19. AI APIs
+
+## AI Job Recommendation
+
+POST /ai/recommend-jobs
+
+---
+
+## AI Fraud Detection
+
+POST /ai/fraud-check
+
+---
+
+## AI Content Moderation
+
+POST /ai/moderate-content
+
+---
+
+## AI Smart Search
+
+POST /ai/search
+
+---
+
+## AI Analytics
+
+GET /ai/analytics
+
+---
+
+# 20. Analytics APIs
+
+GET /analytics/dashboard
+
+GET /analytics/users
+
+GET /analytics/jobs
+
+GET /analytics/revenue
+
+GET /analytics/referrals
+
+GET /analytics/payments
+
+---
+
+# 21. System APIs
+
+GET /settings
+
+PUT /settings
+
+GET /health
+
+GET /status
+
+GET /version
+
+---
+
+# 22. Webhooks
+
+Supported Events
+
+- Payment Completed
+- Payment Failed
+- Withdrawal Approved
+- Withdrawal Rejected
+- User Registered
+- Job Completed
+- Premium Purchased
+
+Webhook Format
+
+```json
+{
+  "event": "payment.completed",
+  "timestamp": "2026-01-01T10:00:00Z",
+  "data": {}
+}
+```
+
+---
+
+# 23. Error Codes
+
+| Code | Description |
+|------|-------------|
+| 200 | Success |
+| 201 | Resource Created |
+| 400 | Bad Request |
+| 401 | Unauthorized |
+| 403 | Forbidden |
+| 404 | Not Found |
+| 409 | Conflict |
+| 422 | Validation Failed |
+| 429 | Too Many Requests |
+| 500 | Internal Server Error |
+| 503 | Service Unavailable |
+
+---
+
+# 24. Rate Limiting
+
+Authentication APIs
+
+- 10 requests/minute
+
+General APIs
+
+- 100 requests/minute
+
+Search APIs
+
+- 60 requests/minute
+
+Admin APIs
+
+- 300 requests/minute
+
+---
+
+# 25. API Security
+
+The API shall implement:
+
+- HTTPS Only
+- JWT Authentication
+- Refresh Tokens
+- Role-Based Access Control (RBAC)
+- API Rate Limiting
+- Request Validation
+- Input Sanitization
+- SQL Injection Protection
+- XSS Protection
+- CSRF Protection (where applicable)
+- Audit Logging
+
+---
+
+# 26. API Versioning
+
+Current Version
+
+v1
+
+Future Versions
+
+- v2
+- v3
+
+Version Format
+
+/api/v1/
+
+---
+
+# 27. API Documentation
+
+The platform shall provide:
+
+- OpenAPI 3.1 Specification
+- Swagger UI
+- Postman Collection
+- Example Requests
+- Example Responses
+- Authentication Guide
+- Error Code Reference
+- SDK Documentation
+
+---
+
+# Conclusion
+
+The MyGigMint API is designed using RESTful architecture with enterprise-grade security, scalability, consistency, and maintainability. All APIs are versioned, documented, and ready for web, mobile, and third-party integrations.
+
+---
+
+# End of API Specification
