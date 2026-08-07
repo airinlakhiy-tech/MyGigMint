@@ -634,3 +634,509 @@ Examples:
 ---
 
 # End of Part 2
+---
+
+# Part 3 – Data Security, Privacy & API Protection
+
+# 31. Data Classification
+
+MyGigMint data shall be classified according to sensitivity.
+
+## Public Data
+
+Examples:
+
+- Public Job Listings
+- Public Categories
+- Public Platform Information
+
+## Internal Data
+
+Examples:
+
+- Internal Analytics
+- Operational Metrics
+- Non-public Configuration
+
+## Confidential Data
+
+Examples:
+
+- User Information
+- Wallet Records
+- Referral Information
+- Support Tickets
+
+## Highly Sensitive Data
+
+Examples:
+
+- Password Hashes
+- Authentication Tokens
+- Payment Credentials
+- API Secrets
+- MFA Secrets
+- Encryption Keys
+
+Highly sensitive data shall receive the strongest security controls.
+
+---
+
+# 32. Data Encryption
+
+Sensitive data shall be encrypted both in transit and at rest.
+
+## Encryption in Transit
+
+All production communication shall use:
+
+- HTTPS
+- TLS 1.2+
+- TLS 1.3 preferred
+
+Unencrypted authentication or payment traffic shall not be permitted.
+
+---
+
+# 33. Encryption at Rest
+
+Sensitive data stored in:
+
+- Database
+- File Storage
+- Backup Storage
+- Logs
+
+shall use appropriate encryption mechanisms.
+
+Cloud storage shall use server-side encryption where supported.
+
+---
+
+# 34. Encryption Key Management
+
+Encryption keys shall be managed separately from application data.
+
+Keys shall:
+
+- Never be committed to Git
+- Never be hard-coded
+- Be stored in a secure secrets system
+- Be rotated periodically
+- Have restricted access
+- Be audited
+
+Recommended services:
+
+- AWS KMS
+- Google Cloud KMS
+- Azure Key Vault
+- HashiCorp Vault
+
+---
+
+# 35. Database Security
+
+The PostgreSQL database shall implement:
+
+- Strong Authentication
+- Private Network Access
+- Encrypted Connections
+- Role-Based Database Access
+- Least Privilege
+- Connection Restrictions
+- Audit Logging
+
+The database shall never be directly exposed to the public internet.
+
+---
+
+# 36. Database Access Control
+
+Separate database credentials shall be used for different services.
+
+Examples:
+
+```text
+Application User
+Read/Write Required Data
+
+Reporting User
+Read-Only Analytics Data
+
+Migration User
+Schema Management
+
+Backup User
+Backup Operations
+```
+
+No application component shall receive unnecessary database privileges.
+
+---
+
+# 37. SQL Injection Protection
+
+The application shall prevent SQL Injection using:
+
+- Parameterized Queries
+- ORM Query Builder
+- Input Validation
+- Restricted Database Permissions
+
+Raw SQL shall only be used when necessary and shall be carefully reviewed.
+
+---
+
+# 38. API Security
+
+All protected APIs shall require authentication and authorization.
+
+API security controls:
+
+- HTTPS
+- Authentication
+- Authorization
+- Rate Limiting
+- Input Validation
+- Output Validation
+- Request Size Limits
+- Security Headers
+- Audit Logging
+
+---
+
+# 39. API Rate Limiting
+
+Rate limits shall be applied based on:
+
+- IP Address
+- User Account
+- API Endpoint
+- Authentication State
+
+Sensitive endpoints shall have stricter limits.
+
+Examples:
+
+```text
+Login
+10 requests/minute
+
+Password Reset
+5 requests/hour
+
+General API
+100 requests/minute
+
+Admin API
+Restricted according to role
+```
+
+Limits may be adjusted based on production traffic and risk.
+
+---
+
+# 40. API Input Validation
+
+All API input shall be validated.
+
+Validation shall include:
+
+- Data Type
+- Required Fields
+- Length
+- Format
+- Range
+- Allowed Values
+
+Invalid requests shall be rejected before business logic execution.
+
+---
+
+# 41. API Output Security
+
+API responses shall only return data required by the client.
+
+The API shall never expose:
+
+- Password Hashes
+- Internal Secrets
+- API Keys
+- Private Encryption Keys
+- Internal Database Credentials
+- Sensitive Administrative Information
+
+---
+
+# 42. File Upload Security
+
+Uploaded files shall be treated as untrusted input.
+
+Security controls:
+
+- File Type Validation
+- MIME Type Validation
+- File Size Limits
+- Filename Sanitization
+- Malware Scanning
+- Storage Isolation
+- Access Control
+
+Executable files shall not be accepted unless explicitly required and securely handled.
+
+---
+
+# 43. Payment Data Security
+
+Financial information shall receive enhanced protection.
+
+The system shall:
+
+- Minimize stored payment information
+- Encrypt sensitive data
+- Restrict financial permissions
+- Log financial actions
+- Monitor suspicious transactions
+- Require additional verification for sensitive actions
+
+Payment providers should handle sensitive card/payment credentials whenever possible rather than storing raw credentials in MyGigMint.
+
+---
+
+# 44. Wallet Security
+
+Wallet operations shall use server-side validation.
+
+Security controls:
+
+- Transaction Authorization
+- Balance Validation
+- Idempotency
+- Transaction Logging
+- Fraud Detection
+- Withdrawal Verification
+- Rate Limiting
+
+Users shall never be able to directly modify their wallet balance.
+
+---
+
+# 45. Transaction Integrity
+
+Every financial transaction shall have a unique identifier.
+
+Example:
+
+```text
+TXN-2026-000001
+```
+
+Transactions shall maintain:
+
+- Transaction ID
+- User ID
+- Amount
+- Currency
+- Transaction Type
+- Status
+- Timestamp
+- Reference ID
+
+Financial records shall be immutable wherever practical.
+
+---
+
+# 46. Idempotency
+
+Critical operations shall support idempotency.
+
+Examples:
+
+- Payment
+- Deposit
+- Withdrawal
+- Premium Purchase
+
+Example:
+
+```text
+Idempotency-Key: 8f7a-example-key
+```
+
+Repeated requests with the same valid idempotency key shall not create duplicate financial transactions.
+
+---
+
+# 47. Personal Data Protection
+
+The platform shall minimize collection of personal data.
+
+Only information necessary for platform operations shall be collected.
+
+Personal data shall have:
+
+- Defined Purpose
+- Access Controls
+- Retention Policy
+- Deletion Process
+- Auditability
+
+---
+
+# 48. Data Privacy
+
+Users shall have appropriate controls for their personal data.
+
+Where legally applicable, the platform should support:
+
+- Data Access Request
+- Data Correction
+- Account Deletion
+- Data Export
+- Privacy Preferences
+
+Actual requirements shall depend on the jurisdictions in which MyGigMint operates.
+
+---
+
+# 49. Data Retention
+
+Data shall not be retained indefinitely without a legitimate purpose.
+
+Retention policies shall define periods for:
+
+- User Data
+- Financial Records
+- Audit Logs
+- Security Logs
+- Support Tickets
+- Uploaded Files
+- Analytics Data
+
+Legal and financial retention requirements shall take precedence where applicable.
+
+---
+
+# 50. Audit Logging
+
+Security-sensitive actions shall be recorded.
+
+Audit events shall include:
+
+- User ID
+- Action
+- Resource
+- Timestamp
+- IP Address
+- Request ID
+- Result
+
+Examples:
+
+```text
+User Login
+Password Changed
+Role Changed
+Withdrawal Requested
+Withdrawal Approved
+Payment Approved
+Admin Action
+Security Setting Changed
+```
+
+---
+
+# 51. Audit Log Protection
+
+Audit logs shall:
+
+- Be append-oriented
+- Have restricted write access
+- Have restricted read access
+- Be protected from unauthorized modification
+- Be retained according to policy
+- Be monitored for suspicious activity
+
+---
+
+# 52. Privacy-Safe Logging
+
+Logs shall avoid unnecessary personal or financial information.
+
+Sensitive values shall be:
+
+- Redacted
+- Masked
+- Hashed
+- Excluded
+
+Example:
+
+```text
+Phone: 017********
+Email: u***@example.com
+Card: **** **** **** 1234
+```
+
+---
+
+# 53. Data Backup Security
+
+Backups shall use:
+
+- Encryption
+- Access Control
+- Separate Credentials
+- Versioning
+- Integrity Verification
+- Restricted Network Access
+
+Backup credentials shall be separate from normal application credentials.
+
+---
+
+# 54. Third-Party API Security
+
+External integrations shall follow secure practices.
+
+Examples:
+
+- Payment Providers
+- Email Providers
+- SMS Providers
+- AI Providers
+- Cloud Storage
+- Analytics Services
+
+Requirements:
+
+- Secure API Keys
+- HTTPS
+- Least Privilege
+- Timeout Configuration
+- Retry Policies
+- Rate Limits
+- Failure Handling
+- Vendor Monitoring
+
+---
+
+# 55. Security Monitoring
+
+The platform shall continuously monitor:
+
+- Failed Login Attempts
+- Suspicious IP Activity
+- Unusual Wallet Activity
+- Multiple Account Creation
+- Privilege Changes
+- API Abuse
+- Payment Anomalies
+- Admin Activity
+
+Suspicious events shall trigger alerts or additional verification.
+
+---
+
+# End of Part 3
