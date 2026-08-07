@@ -53,3 +53,107 @@
 ---
 
 # End of Part 1 
+---
+
+# 6. Maintainability
+
+The platform shall be designed for long-term maintenance.
+
+### Requirements
+
+- Modular architecture.
+- Clean and readable code.
+- Reusable components.
+- Proper code documentation.
+- Coding standards must be enforced.
+- Version control using Git.
+- Feature branches for development.
+- Continuous Integration (CI).
+- Continuous Deployment (CD).
+
+---
+
+# 7. Usability
+
+The system shall provide an excellent user experience.
+
+### Requirements
+
+- Simple navigation.
+- Beginner-friendly interface.
+- Responsive design.
+- Mobile-first layout.
+- Accessible color contrast.
+- Keyboard navigation support.
+- Screen reader compatibility.
+- Multi-language support.
+- Clear validation messages.
+- Consistent UI components.
+
+---
+
+# 8. Compatibility
+
+The platform shall support:
+
+### Browsers
+
+- Google Chrome
+- Microsoft Edge
+- Mozilla Firefox
+- Safari
+
+### Devices
+
+- Desktop
+- Laptop
+- Tablet
+- Android
+- iPhone
+
+---
+
+# 9. Database Requirements
+
+The database must:
+
+- Support ACID transactions.
+- Ensure data consistency.
+- Support replication.
+- Daily backup.
+- Point-in-time recovery.
+- Foreign key constraints.
+- Proper indexing.
+- Query optimization.
+
+---
+
+# 10. Logging & Monitoring
+
+The system shall record:
+
+- User login
+- Failed login
+- Registration
+- Password reset
+- Wallet transactions
+- Job creation
+- Job completion
+- Withdraw requests
+- Admin actions
+- API errors
+- Payment failures
+
+Monitoring:
+
+- CPU usage
+- Memory usage
+- Storage usage
+- Response time
+- Error rate
+- Uptime
+- Queue status
+
+---
+
+# End of Part 2
