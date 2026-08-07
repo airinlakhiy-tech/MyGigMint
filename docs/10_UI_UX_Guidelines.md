@@ -485,3 +485,297 @@ Modal Features
 ---
 
 # End of Part 2
+---
+
+# Part 3 – Dashboard, Responsive Design & Accessibility
+
+# 20. Dashboard Layout
+
+The dashboard shall provide a clean and organized workspace.
+
+## User Dashboard
+
+Widgets
+
+- Wallet Balance
+- Available Jobs
+- Active Jobs
+- Completed Jobs
+- Referral Earnings
+- Recent Transactions
+- Notifications
+- Profile Completion
+
+Layout
+
+- Left Sidebar
+- Top Navigation
+- Main Content Area
+- Right Sidebar (optional)
+
+---
+
+## Employer Dashboard
+
+Widgets
+
+- Total Posted Jobs
+- Active Jobs
+- Pending Applications
+- Approved Applications
+- Wallet Balance
+- Recent Payments
+- Reports
+
+---
+
+## Admin Dashboard
+
+Widgets
+
+- Total Users
+- Active Users
+- Total Jobs
+- Total Revenue
+- Pending Withdrawals
+- Pending Deposits
+- Reports
+- Support Tickets
+- System Health
+- AI Analytics
+
+---
+
+# 21. Job Card Design
+
+Each job card shall display:
+
+- Job Title
+- Reward Amount
+- Category
+- Employer Name
+- Available Slots
+- Deadline
+- Difficulty Level
+- Apply Button
+- Save Button
+
+Card Actions
+
+- Apply
+- Save
+- Share
+- Report
+
+---
+
+# 22. Wallet UI
+
+Wallet Page shall include:
+
+- Current Balance
+- Pending Balance
+- Total Earnings
+- Withdraw Button
+- Deposit Button
+- Transaction History
+- Filter Options
+
+---
+
+# 23. Authentication Pages
+
+Pages
+
+- Login
+- Register
+- Forgot Password
+- Reset Password
+- Verify Email
+- Two-Factor Authentication
+
+Requirements
+
+- Minimal Design
+- Clear Validation Messages
+- Password Strength Indicator
+- Social Login Buttons
+
+---
+
+# 24. Responsive Design
+
+Supported Devices
+
+- Desktop (1920px+)
+- Laptop (1366px+)
+- Tablet (768px+)
+- Mobile (320px+)
+
+Responsive Rules
+
+- Flexible Grid
+- Responsive Images
+- Responsive Typography
+- Touch-Friendly Buttons
+- Adaptive Navigation
+
+---
+
+# 25. Dark Mode
+
+The platform shall support:
+
+- Light Theme
+- Dark Theme
+- System Theme
+
+Dark Mode Requirements
+
+- Accessible Contrast
+- Consistent Branding
+- Smooth Theme Switching
+
+---
+
+# 26. Accessibility
+
+The platform shall comply with WCAG 2.1 AA.
+
+Requirements
+
+- Keyboard Navigation
+- Screen Reader Support
+- ARIA Labels
+- Visible Focus Indicators
+- High Contrast Mode
+- Accessible Forms
+
+---
+
+# 27. Loading States
+
+Use loading indicators for:
+
+- Page Loading
+- API Requests
+- Form Submission
+- Image Upload
+- Payment Processing
+
+Loading Components
+
+- Spinner
+- Skeleton Loader
+- Progress Bar
+
+---
+
+# 28. Empty States
+
+Provide meaningful empty states for:
+
+- No Jobs Found
+- No Notifications
+- Empty Wallet History
+- No Search Results
+- No Support Tickets
+
+Each empty state should include:
+
+- Illustration/Icon
+- Helpful Message
+- Call-to-Action Button
+
+---
+
+# 29. Error Pages
+
+Provide dedicated pages for:
+
+- 401 Unauthorized
+- 403 Forbidden
+- 404 Not Found
+- 429 Too Many Requests
+- 500 Internal Server Error
+- Maintenance Mode
+
+Each page should include:
+
+- Friendly Message
+- Error Code
+- Navigation Button
+- Contact Support Link
+
+---
+
+# 30. Design Tokens
+
+Colors
+
+- Primary
+- Secondary
+- Success
+- Warning
+- Danger
+- Background
+- Surface
+- Border
+
+Typography
+
+- Font Family
+- Font Size
+- Font Weight
+- Line Height
+
+Spacing
+
+- 4px
+- 8px
+- 12px
+- 16px
+- 24px
+- 32px
+- 48px
+- 64px
+
+Border Radius
+
+- Small
+- Medium
+- Large
+- Full
+
+Elevation
+
+- Low
+- Medium
+- High
+
+---
+
+# 31. Figma Guidelines
+
+The design system shall include:
+
+- Color Styles
+- Text Styles
+- Components
+- Variants
+- Auto Layout
+- Design Tokens
+- Icons
+- Grid System
+- Responsive Frames
+- Prototype Flow
+
+---
+
+# Conclusion
+
+The MyGigMint UI/UX Design System establishes a consistent, responsive, accessible, and scalable user experience across all products and devices.
+
+---
+
+# End of UI/UX Guidelines
