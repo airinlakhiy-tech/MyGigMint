@@ -200,3 +200,208 @@ Sessions
 ---
 
 # End of Part 1
+---
+
+# Part 2 – Job Management Database
+
+## 4. Job Categories
+
+Stores all job categories.
+
+### Columns
+
+- id
+- name
+- slug
+- description
+- icon
+- status
+- created_at
+- updated_at
+
+Indexes
+
+- name
+- slug
+
+---
+
+## 5. Jobs
+
+Stores all posted jobs.
+
+### Columns
+
+- id
+- employer_id
+- category_id
+- title
+- slug
+- description
+- instructions
+- reward_amount
+- available_slots
+- completed_slots
+- start_date
+- end_date
+- status
+- created_at
+- updated_at
+
+Indexes
+
+- employer_id
+- category_id
+- status
+
+---
+
+## 6. Job Applications
+
+Stores worker applications.
+
+### Columns
+
+- id
+- job_id
+- user_id
+- proof
+- status
+- submitted_at
+- reviewed_at
+- created_at
+- updated_at
+
+Status
+
+- Pending
+- Approved
+- Rejected
+
+Indexes
+
+- job_id
+- user_id
+- status
+
+---
+
+## 7. Job Proofs
+
+Stores uploaded proof for completed jobs.
+
+### Columns
+
+- id
+- application_id
+- file_url
+- proof_text
+- reviewed_by
+- review_note
+- created_at
+
+---
+
+## 8. Skills
+
+Stores platform skills.
+
+### Columns
+
+- id
+- name
+- slug
+- description
+
+---
+
+## 9. User Skills
+
+Many-to-many relationship.
+
+### Columns
+
+- id
+- user_id
+- skill_id
+- experience_level
+
+Experience Level
+
+- Beginner
+- Intermediate
+- Advanced
+- Expert
+
+---
+
+## 10. Favorites
+
+Stores bookmarked jobs.
+
+### Columns
+
+- id
+- user_id
+- job_id
+- created_at
+
+---
+
+## 11. Reviews
+
+Stores employer and worker reviews.
+
+### Columns
+
+- id
+- reviewer_id
+- target_user_id
+- job_id
+- rating
+- review
+- created_at
+
+Rating
+
+- 1
+- 2
+- 3
+- 4
+- 5
+
+---
+
+# Relationships
+
+Users
+↓
+Jobs
+
+Jobs
+↓
+Applications
+
+Applications
+↓
+Proofs
+
+Users
+↓
+Skills
+
+Users
+↓
+Favorites
+
+Users
+↓
+Reviews
+
+Jobs
+↓
+Reviews
+
+---
+
+# End of Part 2
