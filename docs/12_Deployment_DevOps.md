@@ -704,3 +704,466 @@ After deployment, automatically verify:
 ---
 
 # End of Part 3
+---
+
+# Part 4 – Monitoring, Logging & Observability
+
+# 31. Monitoring Strategy
+
+The MyGigMint platform shall implement centralized monitoring to continuously track system health, performance, availability, and business-critical services.
+
+Monitoring shall cover:
+
+- Infrastructure
+- Application
+- Database
+- API
+- Queue
+- Cache
+- Storage
+- Payment Services
+- AI Services
+- Security Events
+
+---
+
+# 32. Prometheus
+
+Prometheus shall be used for metrics collection.
+
+Metrics shall include:
+
+- CPU Usage
+- Memory Usage
+- Disk Usage
+- Network Traffic
+- API Request Count
+- API Response Time
+- HTTP Error Rate
+- Database Connections
+- Redis Connections
+- Queue Length
+- Queue Processing Time
+- Application Uptime
+
+Metrics shall be collected at regular intervals.
+
+---
+
+# 33. Grafana
+
+Grafana shall provide centralized dashboards.
+
+## Infrastructure Dashboard
+
+Display:
+
+- CPU
+- RAM
+- Disk
+- Network
+- Server Availability
+
+## Application Dashboard
+
+Display:
+
+- Requests per Second
+- Average Response Time
+- Error Rate
+- Active Users
+- API Latency
+
+## Database Dashboard
+
+Display:
+
+- Active Connections
+- Query Performance
+- Slow Queries
+- Database Size
+- Replication Status
+
+## Business Dashboard
+
+Display:
+
+- Registered Users
+- Active Users
+- Jobs Created
+- Jobs Completed
+- Revenue
+- Withdrawals
+- Deposits
+
+---
+
+# 34. Logging Architecture
+
+All application and infrastructure logs shall be centralized.
+
+Log Sources:
+
+- Nginx
+- Laravel
+- Next.js
+- PostgreSQL
+- Redis
+- Queue Workers
+- Docker
+- System Services
+- Security Services
+
+Recommended Stack:
+
+- Loki
+- Promtail
+- Grafana
+
+Alternative:
+
+- Elasticsearch
+- Logstash
+- Kibana (ELK)
+
+---
+
+# 35. Application Logs
+
+Application logs shall include:
+
+- Authentication Events
+- API Requests
+- API Errors
+- Payment Events
+- Wallet Transactions
+- Job Processing
+- Queue Failures
+- AI Requests
+- Security Events
+
+Sensitive information must never be written to logs.
+
+Examples of information that must not be logged:
+
+- Passwords
+- API Secrets
+- Authentication Tokens
+- Payment Credentials
+- Private User Data
+
+---
+
+# 36. Error Tracking
+
+The platform shall use an error tracking system.
+
+Recommended:
+
+- Sentry
+
+The system shall track:
+
+- Application Exceptions
+- API Errors
+- Frontend Errors
+- Database Errors
+- Queue Failures
+- JavaScript Errors
+
+Each error should include:
+
+- Error Message
+- Stack Trace
+- Timestamp
+- Environment
+- Request ID
+- User Context (when appropriate)
+
+---
+
+# 37. API Performance Monitoring
+
+The system shall monitor API performance.
+
+Metrics:
+
+- Average Response Time
+- P95 Response Time
+- P99 Response Time
+- Requests Per Second
+- Error Rate
+- Timeout Rate
+
+Performance Targets:
+
+- Average API Response: < 500ms
+- P95 Response: < 1 second
+- Critical API P99: < 2 seconds
+
+---
+
+# 38. Database Monitoring
+
+The database shall be monitored continuously.
+
+Monitoring Areas:
+
+- Connection Pool
+- Query Latency
+- Slow Queries
+- Locking
+- Deadlocks
+- CPU Usage
+- Storage
+- Replication
+
+Slow queries shall be identified and optimized.
+
+---
+
+# 39. Redis Monitoring
+
+Redis monitoring shall include:
+
+- Memory Usage
+- Cache Hit Rate
+- Cache Miss Rate
+- Connected Clients
+- Queue Size
+- Evicted Keys
+- Command Latency
+
+---
+
+# 40. Queue Monitoring
+
+Queue workers shall be monitored for:
+
+- Pending Jobs
+- Failed Jobs
+- Processing Time
+- Retry Count
+- Worker Availability
+
+Failed jobs shall be automatically recorded for investigation.
+
+---
+
+# 41. Alerting
+
+The monitoring system shall automatically generate alerts.
+
+Critical Alerts:
+
+- Server Down
+- Database Down
+- API Unavailable
+- High Error Rate
+- Payment Service Failure
+- Queue Failure
+- Storage Failure
+- Security Incident
+
+Warning Alerts:
+
+- High CPU
+- High Memory
+- Low Disk Space
+- Increased API Latency
+- Queue Backlog
+
+---
+
+# 42. Alert Severity
+
+## Critical
+
+Immediate response required.
+
+Examples:
+
+- Production outage
+- Database failure
+- Payment system failure
+- Security breach
+
+## High
+
+Response required within a short period.
+
+Examples:
+
+- High error rate
+- API degradation
+- Queue failure
+
+## Medium
+
+Requires investigation.
+
+Examples:
+
+- Increased latency
+- High memory usage
+
+## Low
+
+Informational.
+
+Examples:
+
+- Scheduled maintenance
+- Routine system warnings
+
+---
+
+# 43. Incident Management
+
+Every production incident shall follow:
+
+1. Detection
+2. Alert
+3. Investigation
+4. Mitigation
+5. Recovery
+6. Root Cause Analysis
+7. Documentation
+8. Preventive Action
+
+---
+
+# 44. Incident Response
+
+The DevOps team shall maintain an Incident Response Plan.
+
+The plan shall define:
+
+- Incident Owner
+- Communication Channel
+- Escalation Process
+- Recovery Procedure
+- Rollback Procedure
+- Customer Communication
+- Post-Incident Review
+
+---
+
+# 45. Observability
+
+The platform shall implement the three pillars of observability:
+
+## Metrics
+
+System and business measurements.
+
+## Logs
+
+Detailed system events.
+
+## Traces
+
+Distributed request tracing across services.
+
+Future tracing technology:
+
+- OpenTelemetry
+
+---
+
+# 46. Request Tracing
+
+Each API request should have a unique Request ID.
+
+Example:
+
+```text
+X-Request-ID: req_01JXYZ123
+```
+
+The Request ID shall be included in:
+
+- API Logs
+- Application Logs
+- Error Reports
+- Database Logs
+- Distributed Traces
+
+This enables developers to trace a request across the entire platform.
+
+---
+
+# 47. Service Level Objectives
+
+Initial targets:
+
+### Availability
+
+99.9% monthly uptime.
+
+### API Performance
+
+95% of requests should complete within 1 second.
+
+### Error Rate
+
+Production API error rate should remain below 1%.
+
+### Recovery
+
+Critical services should recover within the defined RTO.
+
+---
+
+# 48. Monitoring Retention
+
+Metrics:
+
+- 90 Days
+
+Application Logs:
+
+- 30–90 Days
+
+Security Logs:
+
+- According to compliance requirements
+
+Audit Logs:
+
+- According to the platform retention policy
+
+---
+
+# 49. Production Health Dashboard
+
+The production dashboard shall provide a single overview of:
+
+- Overall System Status
+- API Status
+- Database Status
+- Redis Status
+- Queue Status
+- Storage Status
+- Payment Status
+- AI Service Status
+- Current Incidents
+
+---
+
+# 50. Observability Best Practices
+
+The platform shall follow:
+
+- Monitor Before Problems Occur
+- Centralize Logs
+- Use Meaningful Alerts
+- Avoid Alert Fatigue
+- Track Business Metrics
+- Monitor User Experience
+- Maintain Runbooks
+- Perform Regular Incident Reviews
+
+---
+
+# End of Part 4
