@@ -1665,3 +1665,1204 @@ Notifications shall be generated only after the financial transaction reaches th
 ---
 
 # End of Part 2
+# Part 3 – Admin Controls, Fraud Prevention, Reconciliation, Reporting, Security & Testing
+
+# 76. Wallet Reporting
+
+Users shall be able to view:
+
+- Current Balance
+- Pending Balance
+- Locked Balance
+- Transaction History
+- Earnings
+- Fees
+- Withdrawals
+- Deposits
+- Refunds
+
+Administrators may access expanded financial reporting based on permissions.
+
+---
+
+# 77. Wallet Search & Filtering
+
+Transaction history shall support:
+
+- Date Range
+- Transaction Type
+- Transaction Status
+- Amount Range
+- Transaction ID
+- Reference ID
+- User ID
+
+Pagination shall be used for large transaction histories.
+
+---
+
+# 78. Wallet Data Export
+
+Users may be allowed to export their transaction history.
+
+Supported formats may include:
+
+- CSV
+- PDF
+
+Exports shall:
+
+- Require authentication
+- Respect authorization
+- Exclude unnecessary sensitive data
+- Be logged where appropriate
+
+---
+
+# 79. Financial Integrity Rules
+
+The Wallet & Ledger System shall enforce:
+
+- No Unauthorized Balance Changes
+- No Duplicate Transactions
+- No Duplicate Credits
+- No Duplicate Debits
+- No Invalid Ledger Entries
+- No Unbalanced Double-Entry Transactions
+- No Unauthorized Negative Balance
+- No Silent Financial Corrections
+- No Deletion of Posted Ledger Entries
+
+---
+
+# 80. Operational Principles
+
+The Wallet & Ledger System shall follow:
+
+1. Ledger First
+2. Server-Side Validation
+3. Atomic Transactions
+4. Immutable Financial History
+5. Idempotent Operations
+6. Least Privilege
+7. Complete Auditability
+8. Reconciliation
+9. Fraud Detection
+10. Controlled Administrative Adjustments
+
+---
+
+# 81. Admin Wallet Access
+
+Administrators shall have controlled access to wallet-related information.
+
+Admin permissions may include:
+
+- View Wallet
+- View Transactions
+- View Ledger
+- Review Withdrawals
+- Review Deposits
+- Review Refunds
+- Freeze Wallet
+- Unfreeze Wallet
+- Review Disputes
+- Perform Authorized Adjustments
+
+Financial permissions shall be separated from general administrative permissions where appropriate.
+
+---
+
+# 82. Wallet Freeze
+
+A wallet may be temporarily frozen because of:
+
+- Suspicious Activity
+- Fraud Investigation
+- Security Incident
+- Compliance Review
+- Account Compromise
+- Administrative Action
+
+When a wallet is frozen:
+
+```text
+Wallet
+   ↓
+Freeze
+   ↓
+Risky Financial Operations Blocked
+   ↓
+Investigation
+```
+
+The freeze action shall be recorded in the audit log.
+
+---
+
+# 83. Wallet Unfreeze
+
+An authorized administrator may unfreeze a wallet after the relevant investigation or review.
+
+```text
+Investigation
+      ↓
+Decision
+      ↓
+Authorized Approval
+      ↓
+Wallet Unfrozen
+      ↓
+Normal Operations
+```
+
+The unfreeze action shall be logged.
+
+---
+
+# 84. Administrative Adjustments
+
+Administrators may need to correct legitimate financial discrepancies.
+
+Administrative adjustments shall:
+
+- Require appropriate permission
+- Require a reason
+- Require a reference
+- Create a ledger entry
+- Create an audit event
+- Never silently overwrite the original transaction
+
+Example:
+
+```text
+Original Transaction
+        ↓
+Investigation
+        ↓
+Authorized Adjustment
+        ↓
+New Ledger Entry
+        ↓
+Audit Record
+```
+
+---
+
+# 85. Manual Credit
+
+Manual wallet credit shall only be available to authorized roles.
+
+Required information may include:
+
+- User ID
+- Amount
+- Reason
+- Reference
+- Admin ID
+- Timestamp
+
+Example:
+
+```text
+Manual Credit
+     ↓
+Authorization
+     ↓
+Ledger Entry
+     ↓
+Wallet Balance
+     ↓
+Audit Log
+```
+
+---
+
+# 86. Manual Debit
+
+Manual debit shall follow the same controlled process.
+
+The system shall validate:
+
+- Available Balance
+- Admin Permission
+- Adjustment Reason
+- Transaction Reference
+
+Manual debits shall never silently modify wallet balances.
+
+---
+
+# 87. Dual Approval
+
+High-value financial adjustments may require dual approval.
+
+Example:
+
+```text
+Admin A
+  ↓
+Creates Adjustment
+  ↓
+Admin B
+  ↓
+Approves Adjustment
+  ↓
+Ledger Posting
+```
+
+The approval threshold shall be configurable.
+
+---
+
+# 88. Withdrawal Review
+
+Administrators may review pending withdrawals.
+
+Withdrawal review may include:
+
+- User Information
+- Amount
+- Payment Method
+- Transaction History
+- Risk Signals
+- Previous Withdrawal History
+- Account Verification Status
+
+Possible actions:
+
+```text
+Approve
+Reject
+Request Review
+Hold
+```
+
+---
+
+# 89. Deposit Review
+
+Where deposits require manual verification, administrators may review:
+
+- Deposit Amount
+- Payment Method
+- Provider Reference
+- User Account
+- Payment Status
+- Verification Evidence
+
+The system shall prevent duplicate deposit credits.
+
+---
+
+# 90. Refund Management
+
+Authorized administrators may process refunds.
+
+Refund workflow:
+
+```text
+Original Transaction
+       ↓
+Refund Request
+       ↓
+Validation
+       ↓
+Authorization
+       ↓
+Refund Transaction
+       ↓
+Ledger Posting
+       ↓
+Notification
+```
+
+The original transaction shall remain unchanged.
+
+---
+
+# 91. Dispute Management
+
+Financial disputes may be associated with:
+
+- Job Transactions
+- Escrow
+- Withdrawals
+- Deposits
+- Refunds
+- Transfers
+
+Dispute records shall include:
+
+- Dispute ID
+- User ID
+- Transaction ID
+- Reason
+- Evidence
+- Status
+- Resolution
+- Created At
+- Resolved At
+
+---
+
+# 92. Dispute States
+
+Possible dispute states:
+
+```text
+Open
+Under Review
+Waiting for Evidence
+Resolved
+Rejected
+Escalated
+Closed
+```
+
+Every state transition shall be auditable.
+
+---
+
+# 93. Fraud Detection
+
+The platform shall implement fraud detection mechanisms.
+
+Potential signals include:
+
+- Multiple Accounts
+- Unusual Transaction Frequency
+- Rapid Deposits and Withdrawals
+- Unusual Transfer Patterns
+- Repeated Failed Transactions
+- Suspicious Device Activity
+- Suspicious IP Activity
+- Abnormal Referral Activity
+- Abnormal Job Activity
+
+Fraud detection rules shall be configurable.
+
+---
+
+# 94. Risk Scoring
+
+The system may assign a risk score to financial activity.
+
+Example:
+
+```text
+Normal Activity
+      ↓
+Risk Engine
+      ↓
+Risk Score
+      ↓
+Low / Medium / High Risk
+```
+
+High-risk transactions may require additional review.
+
+---
+
+# 95. Transaction Velocity Monitoring
+
+The system may monitor:
+
+- Number of transactions per minute
+- Number of withdrawals per hour
+- Number of deposits per day
+- Number of transfers per day
+- Referral activity frequency
+
+Excessive activity may trigger:
+
+```text
+Warning
+Temporary Hold
+Manual Review
+Transaction Rejection
+```
+
+---
+
+# 96. Idempotency
+
+Financial APIs shall support idempotency where appropriate.
+
+Example:
+
+```text
+Request ID:
+REQ-123456
+```
+
+If the same request is submitted multiple times, the system shall not create duplicate financial transactions.
+
+```text
+Same Request
+     ↓
+Idempotency Check
+     ↓
+Existing Result
+     ↓
+Return Existing Result
+```
+
+---
+
+# 97. Duplicate Transaction Prevention
+
+The system shall detect duplicate transactions using appropriate identifiers.
+
+Possible identifiers:
+
+- Payment Provider Reference
+- Transaction ID
+- Idempotency Key
+- External Reference
+- Request ID
+
+Duplicate transactions shall be rejected or safely handled.
+
+---
+
+# 98. Ledger Immutability
+
+Posted ledger entries shall not be directly edited or deleted.
+
+If a correction is required:
+
+```text
+Original Entry
+      ↓
+Correction / Reversal Entry
+      ↓
+New Final Balance
+```
+
+This preserves financial history.
+
+---
+
+# 99. Audit Trail
+
+Every important wallet action shall generate an audit event.
+
+Audit information may include:
+
+- Actor ID
+- Action
+- Transaction ID
+- Wallet ID
+- Previous State
+- New State
+- Amount
+- Reason
+- IP Address
+- User Agent
+- Timestamp
+
+Sensitive information shall be protected according to the platform's privacy requirements.
+
+---
+
+# 100. Financial Reconciliation
+
+The platform shall perform periodic reconciliation.
+
+Conceptually:
+
+```text
+Internal Ledger
+      +
+Wallet Balances
+      +
+Payment Provider Records
+      ↓
+Reconciliation Engine
+      ↓
+Matched / Unmatched
+```
+
+---
+
+# 101. Reconciliation Exceptions
+
+If records do not match:
+
+```text
+Mismatch Detected
+       ↓
+Create Exception
+       ↓
+Assign Investigation
+       ↓
+Review Evidence
+       ↓
+Resolve
+       ↓
+Audit Record
+```
+
+Exceptions shall not be silently ignored.
+
+---
+
+# 102. Daily Reconciliation
+
+The platform should support scheduled reconciliation.
+
+Example:
+
+```text
+Daily
+ ↓
+Collect Provider Records
+ ↓
+Compare Internal Transactions
+ ↓
+Compare Ledger
+ ↓
+Generate Report
+ ↓
+Create Exceptions
+```
+
+The exact schedule shall be configurable.
+
+---
+
+# 103. Provider Reconciliation
+
+Payment provider records shall be compared against internal transactions.
+
+Possible statuses:
+
+```text
+Matched
+Missing Internally
+Missing Externally
+Amount Mismatch
+Status Mismatch
+Duplicate
+Under Review
+Resolved
+```
+
+---
+
+# 104. Financial Reports
+
+Administrators may access reports such as:
+
+- Total Deposits
+- Total Withdrawals
+- Total Earnings
+- Platform Fees
+- Platform Revenue
+- Refunds
+- Escrow Balance
+- Promotional Credits
+- Outstanding Transactions
+- Failed Transactions
+- Reconciliation Exceptions
+
+---
+
+# 105. Transaction Reports
+
+Transaction reports may support:
+
+- Date Filtering
+- Transaction Type
+- Status
+- User
+- Amount Range
+- Payment Method
+- Reference ID
+
+Reports shall support pagination and export where appropriate.
+
+---
+
+# 106. Wallet Dashboard
+
+The admin wallet dashboard may display:
+
+```text
+Total Wallet Balance
+Pending Funds
+Locked Funds
+Today's Deposits
+Today's Withdrawals
+Platform Fees
+Refunds
+Failed Transactions
+Risk Alerts
+Reconciliation Exceptions
+```
+
+---
+
+# 107. Financial Security
+
+Financial operations shall use strong security controls.
+
+Requirements may include:
+
+- HTTPS
+- Authentication
+- Authorization
+- Rate Limiting
+- Secure Sessions
+- CSRF Protection where applicable
+- Input Validation
+- Output Encoding
+- Secure Database Access
+- Secret Management
+- Audit Logging
+
+---
+
+# 108. Role-Based Financial Permissions
+
+Financial permissions shall follow least privilege.
+
+Example roles:
+
+```text
+Super Admin
+Financial Admin
+Support Admin
+Auditor
+User
+```
+
+Each role shall have clearly defined permissions.
+
+Example:
+
+```text
+Support Admin
+    ↓
+View Transaction
+    ↓
+Cannot Modify Balance
+
+Financial Admin
+    ↓
+Review Financial Operations
+    ↓
+Perform Authorized Adjustments
+
+Auditor
+    ↓
+Read Financial Records
+    ↓
+Cannot Modify Transactions
+```
+
+---
+
+# 109. Sensitive Data Protection
+
+Financially sensitive information shall be protected.
+
+The system shall avoid exposing:
+
+- Full Payment Credentials
+- Sensitive Provider Secrets
+- Private Authentication Tokens
+- Unnecessary Personal Data
+
+Sensitive values shall be encrypted or securely stored where required.
+
+---
+
+# 110. API Security
+
+Wallet APIs shall enforce:
+
+- Authentication
+- Authorization
+- Rate Limiting
+- Request Validation
+- Idempotency
+- Input Sanitization
+- Transaction Authorization
+- Error Handling
+
+Example endpoints may include:
+
+```text
+POST /wallet/deposit
+POST /wallet/withdraw
+GET  /wallet/balance
+GET  /wallet/transactions
+POST /wallet/transfer
+POST /wallet/refund
+```
+
+Actual endpoint names shall be finalized during backend implementation.
+
+---
+
+# 111. Error Handling
+
+Financial APIs shall return safe and consistent errors.
+
+Example:
+
+```json
+{
+  "success": false,
+  "message": "Insufficient balance",
+  "code": "INSUFFICIENT_BALANCE"
+}
+```
+
+Internal implementation details shall not be exposed to users.
+
+---
+
+# 112. Transaction Status Model
+
+Transactions may use:
+
+```text
+Pending
+Processing
+Completed
+Failed
+Cancelled
+Rejected
+Reversed
+Refunded
+Disputed
+```
+
+Status transitions shall follow predefined business rules.
+
+---
+
+# 113. Transaction State Machine
+
+Example:
+
+```text
+Created
+   ↓
+Pending
+   ↓
+Processing
+   ↓
+Completed
+```
+
+Failure:
+
+```text
+Processing
+   ↓
+Failed
+```
+
+Reversal:
+
+```text
+Completed
+   ↓
+Reversal Requested
+   ↓
+Reversed
+```
+
+Invalid state transitions shall be rejected.
+
+---
+
+# 114. Database Integrity
+
+The database shall enforce financial integrity using:
+
+- Foreign Keys
+- Unique Constraints
+- Check Constraints
+- Indexes
+- Transactions
+- Appropriate Decimal Types
+- Row-Level Locking where required
+
+Monetary values shall not use floating-point types where exact financial calculations are required.
+
+---
+
+# 115. Monetary Precision
+
+Financial amounts shall use an appropriate fixed-precision decimal representation.
+
+Example:
+
+```text
+DECIMAL(18,2)
+```
+
+The final precision shall be determined by the supported currencies and accounting requirements.
+
+---
+
+# 116. Currency Support
+
+The wallet system may initially support:
+
+```text
+BDT
+```
+
+Future multi-currency support may include:
+
+```text
+USD
+EUR
+GBP
+```
+
+Currency shall be stored explicitly with every financial transaction.
+
+---
+
+# 117. Exchange Rate Handling
+
+If multi-currency transactions are introduced, exchange rates shall be recorded at transaction time.
+
+Example:
+
+```text
+Source Currency
+      ↓
+Exchange Rate
+      ↓
+Destination Currency
+```
+
+The transaction shall preserve:
+
+- Original Amount
+- Source Currency
+- Exchange Rate
+- Converted Amount
+- Destination Currency
+- Rate Timestamp
+
+---
+
+# 118. Testing Strategy
+
+The Wallet & Ledger System shall require comprehensive testing.
+
+Testing categories:
+
+- Unit Testing
+- Integration Testing
+- API Testing
+- Database Testing
+- Security Testing
+- Load Testing
+- End-to-End Testing
+- Financial Reconciliation Testing
+
+---
+
+# 119. Unit Testing
+
+Unit tests shall cover:
+
+- Fee Calculation
+- Balance Calculation
+- Reward Calculation
+- Withdrawal Validation
+- Transfer Validation
+- Refund Calculation
+- Ledger Entry Generation
+- Risk Scoring
+
+Example:
+
+```text
+Input:
+1000 BDT
+
+Fee:
+100 BDT
+
+Expected Net:
+900 BDT
+```
+
+---
+
+# 120. Integration Testing
+
+Integration tests shall verify:
+
+```text
+Frontend
+   ↓
+API
+   ↓
+Wallet Service
+   ↓
+Ledger Service
+   ↓
+Database
+   ↓
+Payment Provider
+```
+
+The complete workflow shall behave consistently.
+
+---
+
+# 121. Double-Spending Test
+
+The system shall test concurrent withdrawal or transfer requests.
+
+Example:
+
+```text
+Balance = 1000 BDT
+
+Request A = Withdraw 800 BDT
+Request B = Withdraw 800 BDT
+```
+
+Only valid transactions shall succeed.
+
+The system must prevent the balance from becoming incorrectly negative.
+
+---
+
+# 122. Duplicate Payment Test
+
+The same payment provider callback may arrive multiple times.
+
+The system shall ensure:
+
+```text
+Callback 1 → Credit
+Callback 2 → Ignore / Return Existing Result
+Callback 3 → Ignore / Return Existing Result
+```
+
+Only one financial credit shall be created.
+
+---
+
+# 123. Failure Recovery Testing
+
+The system shall test failures occurring during:
+
+- Payment Processing
+- Ledger Posting
+- Database Transaction
+- Notification
+- Provider Callback
+- Network Request
+
+Financial consistency shall be preserved.
+
+---
+
+# 124. Reconciliation Testing
+
+Test scenarios shall include:
+
+- Matching Records
+- Missing Provider Record
+- Missing Internal Record
+- Amount Mismatch
+- Status Mismatch
+- Duplicate Provider Record
+
+Each exception shall produce an appropriate reconciliation record.
+
+---
+
+# 125. Backup and Recovery
+
+Financial data shall be included in regular backups.
+
+Backup strategy may include:
+
+```text
+Database Backup
+      ↓
+Encrypted Storage
+      ↓
+Multiple Backup Locations
+      ↓
+Periodic Recovery Test
+```
+
+Recovery procedures shall be documented.
+
+---
+
+# 126. Disaster Recovery
+
+The system shall define procedures for:
+
+- Database Failure
+- Payment Provider Failure
+- Server Failure
+- Network Failure
+- Security Incident
+- Data Corruption
+
+Recovery objectives shall be defined during production planning.
+
+---
+
+# 127. Financial Incident Response
+
+A financial incident may include:
+
+- Unexpected Balance Changes
+- Duplicate Credits
+- Duplicate Withdrawals
+- Ledger Mismatch
+- Payment Provider Discrepancy
+- Unauthorized Administrative Action
+
+Incident workflow:
+
+```text
+Detection
+   ↓
+Alert
+   ↓
+Containment
+   ↓
+Investigation
+   ↓
+Correction
+   ↓
+Reconciliation
+   ↓
+Post-Incident Review
+```
+
+---
+
+# 128. Production Readiness Checklist
+
+Before production launch:
+
+- Wallet calculations tested
+- Ledger tested
+- Deposits tested
+- Withdrawals tested
+- Transfers tested
+- Refunds tested
+- Escrow tested
+- Referral rewards tested
+- Fees tested
+- Fraud rules tested
+- Reconciliation tested
+- Audit logging tested
+- Backup tested
+- Recovery tested
+- Security testing completed
+- Admin permissions reviewed
+
+---
+
+# 129. Financial System Completion Criteria
+
+The Wallet & Ledger System shall be considered production-ready only when:
+
+1. Financial transactions are atomic.
+2. Ledger records are immutable.
+3. Duplicate transactions are prevented.
+4. Wallet balances reconcile with ledger records.
+5. Payment provider callbacks are safely handled.
+6. Withdrawals are protected against double processing.
+7. Administrative adjustments are audited.
+8. Fraud controls are operational.
+9. Reconciliation is operational.
+10. Backup and recovery procedures are tested.
+
+---
+
+# 130. Chapter 16 Final Architecture
+
+The complete Wallet & Ledger architecture can be represented as:
+
+```text
+                    MyGigMint Wallet & Ledger
+                              │
+          ┌───────────────────┼───────────────────┐
+          │                   │                   │
+       Deposits          Withdrawals          Transfers
+          │                   │                   │
+          └───────────────────┼───────────────────┘
+                              │
+                         Transaction
+                              │
+                              ▼
+                           Ledger
+                              │
+             ┌────────────────┼────────────────┐
+             │                │                │
+          Wallet            Escrow          Revenue
+             │                │                │
+             └────────────────┼────────────────┘
+                              │
+                              ▼
+                       Reconciliation
+                              │
+                              ▼
+                       Audit & Reporting
+                              │
+                              ▼
+                    Admin & Risk Controls
+```
+
+---
+
+# 131. Chapter 16 Completion Summary
+
+The Wallet & Ledger System provides the financial foundation for MyGigMint.
+
+It covers:
+
+- Wallet Management
+- Deposits
+- Withdrawals
+- Transfers
+- Job Earnings
+- Escrow
+- Referral Rewards
+- Promotional Credits
+- Fees
+- Refunds
+- Reversals
+- Double-Entry Ledger
+- Balance Verification
+- Reconciliation
+- Fraud Prevention
+- Risk Management
+- Admin Controls
+- Financial Reporting
+- Security
+- Testing
+- Backup
+- Disaster Recovery
+
+The system shall prioritize financial accuracy, security, auditability, reliability, and controlled access.
+
+---
+
+# End of Part 3
+
+# End of Chapter 16
