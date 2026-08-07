@@ -495,3 +495,609 @@ Audit records shall include:
 ---
 
 # End of Part 1
+---
+
+# Part 2 – Wallet, Ledger, Deposits, Withdrawals & Reconciliation
+
+# 23. Wallet Architecture
+
+MyGigMint shall provide a secure wallet system for managing user financial balances.
+
+Each eligible user shall have a wallet associated with their account.
+
+The wallet shall maintain:
+
+- Available Balance
+- Pending Balance
+- Locked Balance
+- Total Balance
+- Currency
+- Wallet Status
+
+---
+
+# 24. Wallet Balance
+
+The wallet shall distinguish between different balance states.
+
+## Available Balance
+
+Funds that can currently be used or withdrawn.
+
+## Pending Balance
+
+Funds awaiting confirmation or settlement.
+
+## Locked Balance
+
+Funds temporarily restricted because of:
+
+- Job Processing
+- Fraud Review
+- Dispute
+- Withdrawal Processing
+- Administrative Hold
+
+## Total Balance
+
+```text
+Total Balance =
+Available Balance
++ Pending Balance
++ Locked Balance
+```
+
+---
+
+# 25. Double-Entry Ledger
+
+Financial transactions should use a ledger-based accounting model.
+
+Every financial movement shall create corresponding ledger entries.
+
+Example:
+
+```text
+Payment Received
+
+Debit:
+Payment Clearing Account
+
+Credit:
+User Wallet Account
+```
+
+The ledger shall maintain a complete history of financial movements.
+
+---
+
+# 26. Ledger Requirements
+
+Ledger entries shall include:
+
+- Ledger ID
+- Transaction ID
+- Account ID
+- Debit
+- Credit
+- Currency
+- Balance Before
+- Balance After
+- Description
+- Created At
+
+Ledger records shall be immutable after posting.
+
+Corrections shall be performed through new adjustment entries rather than modifying historical records.
+
+---
+
+# 27. Wallet Transaction Flow
+
+```text
+Payment
+   ↓
+Payment Verification
+   ↓
+Transaction Created
+   ↓
+Ledger Entry
+   ↓
+Wallet Balance Updated
+   ↓
+Transaction Completed
+   ↓
+Notification
+```
+
+All wallet updates shall occur within appropriate database transactions to maintain consistency.
+
+---
+
+# 28. Deposit Flow
+
+Deposit process:
+
+```text
+User
+ │
+ ▼
+Enter Deposit Amount
+ │
+ ▼
+Select Payment Method
+ │
+ ▼
+Create Transaction
+ │
+ ▼
+Payment Provider
+ │
+ ▼
+Payment Completed
+ │
+ ▼
+Webhook / Verification
+ │
+ ▼
+Ledger Entry
+ │
+ ▼
+Wallet Credit
+ │
+ ▼
+Notification
+```
+
+Wallet funds shall only be credited after successful server-side verification.
+
+---
+
+# 29. Deposit Limits
+
+The system shall support configurable deposit limits.
+
+Possible limits:
+
+- Minimum Deposit
+- Maximum Deposit Per Transaction
+- Daily Deposit Limit
+- Monthly Deposit Limit
+
+Limits may vary according to:
+
+- User Verification Level
+- Risk Score
+- Payment Method
+- Account Status
+- Regulatory Requirements
+
+---
+
+# 30. Withdrawal Flow
+
+Withdrawal process:
+
+```text
+User
+ │
+ ▼
+Enter Withdrawal Amount
+ │
+ ▼
+Select Withdrawal Method
+ │
+ ▼
+Validate Balance
+ │
+ ▼
+Risk Checks
+ │
+ ▼
+Create Withdrawal Request
+ │
+ ▼
+Lock Funds
+ │
+ ▼
+Review / Approval
+ │
+ ▼
+Payment Provider
+ │
+ ▼
+Provider Confirmation
+ │
+ ▼
+Complete Withdrawal
+ │
+ ▼
+Ledger Entry
+ │
+ ▼
+Notification
+```
+
+---
+
+# 31. Withdrawal Validation
+
+Before creating a withdrawal, the system shall verify:
+
+- User Account Status
+- Available Balance
+- Minimum Withdrawal Amount
+- Maximum Withdrawal Amount
+- Daily Limit
+- Payment Method
+- Identity Verification Status where applicable
+- Fraud Risk
+- Pending Withdrawals
+
+---
+
+# 32. Withdrawal Fees
+
+Withdrawal fees shall be configurable.
+
+Example:
+
+```text
+Withdrawal Amount = 1000 BDT
+Withdrawal Fee = 20 BDT
+User Receives = 980 BDT
+```
+
+The system shall clearly display fees before confirmation.
+
+---
+
+# 33. Withdrawal Approval
+
+Withdrawals may use automated or manual approval.
+
+Low-risk transactions:
+
+```text
+Request
+  ↓
+Automatic Risk Check
+  ↓
+Approved
+```
+
+High-risk transactions:
+
+```text
+Request
+  ↓
+Risk Check
+  ↓
+Manual Review
+  ↓
+Approved / Rejected
+```
+
+---
+
+# 34. Withdrawal Rejection
+
+A withdrawal may be rejected because of:
+
+- Insufficient Balance
+- Failed Verification
+- Fraud Risk
+- Invalid Payment Details
+- Account Restriction
+- Provider Restrictions
+
+Rejected withdrawals shall release any locked funds according to the transaction rules.
+
+---
+
+# 35. Withdrawal Failure
+
+If the payment provider fails to process a withdrawal:
+
+```text
+Withdrawal Processing
+        ↓
+Provider Failure
+        ↓
+Mark Failed
+        ↓
+Release Locked Funds
+        ↓
+Create Reversal Ledger Entry
+        ↓
+Notify User
+```
+
+The original transaction record shall remain unchanged for auditability.
+
+---
+
+# 36. Payment Method Management
+
+Users may manage supported payment methods.
+
+Examples:
+
+- Mobile Wallet
+- Bank Account
+- Card
+- Other Approved Methods
+
+Sensitive payment credentials shall be tokenized or stored by the payment provider whenever possible.
+
+---
+
+# 37. Payment Method Verification
+
+Before using a payment method for sensitive operations, the system may require verification.
+
+Verification methods may include:
+
+- OTP
+- Provider Verification
+- Micro-Verification
+- Identity Verification
+
+---
+
+# 38. Payment Gateway Integration
+
+Payment gateways shall be integrated through a standardized internal interface.
+
+Example:
+
+```text
+Payment Service
+      │
+      ▼
+Payment Gateway Interface
+      │
+ ┌────┼───────────┐
+ ▼    ▼           ▼
+bKash Nagad    Card Provider
+```
+
+This architecture allows additional providers to be added without redesigning the entire payment system.
+
+---
+
+# 39. Gateway Adapter
+
+Each payment provider shall have an adapter responsible for:
+
+- Create Payment
+- Verify Payment
+- Process Webhook
+- Refund Payment
+- Check Payment Status
+- Handle Provider Errors
+
+Example interface:
+
+```text
+PaymentGatewayInterface
+
+createPayment()
+verifyPayment()
+refundPayment()
+getPaymentStatus()
+handleWebhook()
+```
+
+---
+
+# 40. bKash Integration
+
+Where supported and approved for the platform's business model, bKash shall be integrated through its official merchant/payment APIs.
+
+The integration shall support:
+
+- Payment Creation
+- Payment Execution
+- Payment Verification
+- Callback/Webhook Handling
+- Transaction Status
+- Error Handling
+
+Credentials shall be stored securely and never committed to source control.
+
+---
+
+# 41. Nagad Integration
+
+Where supported and approved, Nagad shall be integrated through its official merchant/payment APIs.
+
+The integration shall support:
+
+- Payment Initialization
+- Payment Processing
+- Payment Verification
+- Callback Handling
+- Transaction Status
+- Error Handling
+
+Provider-specific requirements shall be documented separately during implementation.
+
+---
+
+# 42. Provider Abstraction
+
+The application shall not tightly couple business logic to one payment provider.
+
+Example:
+
+```text
+Business Logic
+      ↓
+Payment Service
+      ↓
+Gateway Interface
+      ↓
+Provider Adapter
+      ↓
+External Provider
+```
+
+This allows future providers to be added with minimal changes.
+
+---
+
+# 43. Payment Reconciliation
+
+The system shall periodically reconcile internal transactions with payment provider records.
+
+Reconciliation shall compare:
+
+- Internal Transaction ID
+- Provider Transaction ID
+- Amount
+- Currency
+- Status
+- Timestamp
+
+---
+
+# 44. Reconciliation Process
+
+```text
+Internal Transactions
+        │
+        ▼
+Provider Transactions
+        │
+        ▼
+Compare Records
+        │
+   ┌────┴────┐
+   ▼         ▼
+Matched   Mismatch
+   │         │
+   ▼         ▼
+Confirm    Review
+           │
+           ▼
+      Reconciliation
+        Resolution
+```
+
+---
+
+# 45. Reconciliation Exceptions
+
+Potential mismatches include:
+
+- Missing Provider Transaction
+- Missing Internal Transaction
+- Amount Mismatch
+- Status Mismatch
+- Duplicate Transaction
+- Delayed Webhook
+
+Exceptions shall be recorded and investigated.
+
+---
+
+# 46. Refund Processing
+
+Refunds shall be handled through a controlled workflow.
+
+```text
+Refund Request
+      ↓
+Eligibility Check
+      ↓
+Approval
+      ↓
+Payment Provider
+      ↓
+Provider Confirmation
+      ↓
+Ledger Adjustment
+      ↓
+Notification
+```
+
+Refunds shall never directly modify historical ledger records.
+
+---
+
+# 47. Partial Refund
+
+The system may support partial refunds.
+
+Example:
+
+```text
+Original Payment = 1000 BDT
+Refund = 300 BDT
+Remaining = 700 BDT
+```
+
+Each refund shall have its own transaction/reference identifier.
+
+---
+
+# 48. Financial Reconciliation Reports
+
+Administrators shall have access to reports showing:
+
+- Total Deposits
+- Total Withdrawals
+- Successful Payments
+- Failed Payments
+- Refunds
+- Fees
+- Pending Transactions
+- Reconciliation Exceptions
+
+Financial reports shall be access-controlled and audited.
+
+---
+
+# 49. Financial Data Integrity
+
+The payment system shall ensure:
+
+- No Negative Balance Unless Explicitly Supported
+- No Duplicate Credits
+- No Duplicate Withdrawals
+- Immutable Ledger History
+- Atomic Balance Updates
+- Unique Transaction IDs
+- Idempotent Payment Operations
+
+---
+
+# 50. Payment Database Transactions
+
+Critical wallet operations shall use database transactions.
+
+Example:
+
+```text
+BEGIN TRANSACTION
+
+Create Ledger Entry
+Update Wallet Balance
+Update Payment Status
+Create Audit Record
+
+COMMIT
+```
+
+If any critical operation fails:
+
+```text
+ROLLBACK
+```
+
+This prevents inconsistent financial states.
+
+---
+
+# End of Part 2
