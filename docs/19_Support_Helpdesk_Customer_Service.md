@@ -457,3 +457,709 @@ Example:
 ```text
 Internal Note:
 Payment provider response is being investigated.
+# Chapter 19 – Support, Helpdesk, Ticketing & Customer Service System
+# Part 2 – Sections 36–75
+
+# 36. Service Level Agreement (SLA)
+
+The support system shall support configurable Service Level Agreements (SLA).
+
+SLA rules may define:
+
+- First Response Time
+- Resolution Time
+- Priority
+- Business Hours
+- Department
+- Ticket Category
+- Escalation Threshold
+
+---
+
+# 37. SLA Priority Rules
+
+Different priorities may have different SLA targets.
+
+Example:
+
+Critical
+- First Response: 15 minutes
+- Resolution Target: 2 hours
+
+High
+- First Response: 1 hour
+- Resolution Target: 8 hours
+
+Normal
+- First Response: 4 hours
+- Resolution Target: 24 hours
+
+Low
+- First Response: 24 hours
+- Resolution Target: 72 hours
+
+Actual values shall be configurable by administrators.
+
+---
+
+# 38. SLA Timer
+
+The system shall track SLA timers for eligible tickets.
+
+Ticket Created
+      ↓
+SLA Timer Starts
+      ↓
+Agent Response
+      ↓
+First Response Timer Stops
+      ↓
+Resolution
+      ↓
+Resolution Timer Stops
+
+---
+
+# 39. SLA Business Hours
+
+SLA calculations may respect configured business hours.
+
+Possible configuration:
+
+- Working Days
+- Working Hours
+- Holidays
+- Time Zone
+- Break Periods
+
+The platform shall clearly define whether SLA timers continue outside business hours.
+
+---
+
+# 40. SLA Pause
+
+SLA timers may be paused when a ticket is waiting for information from the customer.
+
+Example:
+
+Ticket Open
+   ↓
+Waiting for User
+   ↓
+SLA Paused
+   ↓
+User Replies
+   ↓
+SLA Resumes
+
+Pause rules shall be configurable.
+
+---
+
+# 41. SLA Breach
+
+The system shall detect SLA breaches.
+
+SLA Timer
+    ↓
+Threshold Reached
+    ↓
+SLA Breached
+    ↓
+Alert
+    ↓
+Escalation
+
+SLA breach information shall be available to authorized support managers.
+
+---
+
+# 42. SLA Warning
+
+The platform may warn agents before an SLA breach occurs.
+
+Example:
+
+SLA Remaining:
+15 Minutes
+
+Warning:
+Ticket is approaching SLA breach.
+
+---
+
+# 43. Escalation System
+
+Tickets may be escalated when:
+
+- SLA is approaching breach
+- SLA is breached
+- User requests escalation
+- Agent cannot resolve the issue
+- Issue requires specialized knowledge
+- Financial risk is involved
+- Security concern is identified
+
+---
+
+# 44. Escalation Levels
+
+Possible escalation levels:
+
+- Level 1 – Support Agent
+- Level 2 – Senior Support
+- Level 3 – Department Specialist
+- Level 4 – Manager
+- Level 5 – Administrator
+
+---
+
+# 45. Automatic Escalation
+
+The platform may automatically escalate tickets based on rules.
+
+Example:
+
+SLA Breach
+   ↓
+Level 1
+   ↓
+Escalation Timer
+   ↓
+Level 2
+   ↓
+Manager
+
+Automatic escalation shall be logged.
+
+---
+
+# 46. Manual Escalation
+
+Authorized agents may manually escalate tickets.
+
+Agent
+ ↓
+Escalate
+ ↓
+Select Reason
+ ↓
+Select Team
+ ↓
+Submit
+ ↓
+Escalation Recorded
+
+---
+
+# 47. Escalation Reason
+
+Escalation may require a reason.
+
+Examples:
+
+- Financial Issue
+- Technical Issue
+- Security Issue
+- Compliance Issue
+- Customer Complaint
+- High-Value Transaction
+- Repeated Failure
+
+---
+
+# 48. Escalation History
+
+The system shall maintain escalation history.
+
+Example:
+
+Level 1
+ ↓
+Level 2
+ ↓
+Finance
+ ↓
+Manager
+
+History may include:
+
+- Previous Level
+- New Level
+- Reason
+- Initiated By
+- Timestamp
+
+---
+
+# 49. Ticket Reopening
+
+Resolved or closed tickets may be reopened according to policy.
+
+Closed
+ ↓
+Customer Reply
+ ↓
+Reopen Eligibility Check
+ ↓
+Reopened
+ ↓
+Assigned
+
+Reopening rules shall be configurable.
+
+---
+
+# 50. Reopen Window
+
+The platform may define a reopen period.
+
+Example:
+
+A customer may reopen a resolved ticket within 7 days.
+
+After the reopen window, the customer may need to create a new ticket.
+
+---
+
+# 51. Duplicate Ticket Detection
+
+The system may identify potential duplicate tickets.
+
+Potential Duplicate
+       ↓
+Compare User
+       ↓
+Compare Category
+       ↓
+Compare Subject
+       ↓
+Compare Recent Activity
+       ↓
+Possible Duplicate
+
+Agents may merge or link tickets where appropriate.
+
+---
+
+# 52. Ticket Merge
+
+Authorized agents may merge duplicate tickets.
+
+Ticket A
+   +
+Ticket B
+   ↓
+Merged Ticket
+
+The system shall preserve the history of both original tickets.
+
+---
+
+# 53. Ticket Linking
+
+Related tickets may be linked without merging them.
+
+Example:
+
+Ticket A
+   ↔
+Ticket B
+   ↔
+Ticket C
+
+Linked tickets may share contextual information while retaining independent lifecycles.
+
+---
+
+# 54. Parent and Child Tickets
+
+Complex issues may use parent and child tickets.
+
+Parent Ticket
+      ↓
+Child Ticket 1
+Child Ticket 2
+Child Ticket 3
+
+This may be useful for issues requiring multiple departments.
+
+---
+
+# 55. Ticket Dependencies
+
+A ticket may depend on another ticket.
+
+Example:
+
+Technical Investigation
+        ↓
+Finance Investigation
+        ↓
+Customer Resolution
+
+Dependency relationships shall be visible to authorized agents.
+
+---
+
+# 56. Customer Identity Verification
+
+Certain support requests may require identity verification before sensitive information is disclosed or actions are performed.
+
+Possible verification methods:
+
+- Account Authentication
+- OTP
+- Email Verification
+- Transaction Verification
+- Additional Security Verification
+
+Verification requirements shall depend on the sensitivity of the request.
+
+---
+
+# 57. Sensitive Support Requests
+
+Sensitive requests may include:
+
+- Wallet Changes
+- Withdrawal Issues
+- Account Ownership
+- Security Settings
+- Payment Information
+- Personal Information
+
+Agents shall follow defined verification procedures before taking sensitive actions.
+
+---
+
+# 58. Support Action Authorization
+
+Support agents shall not automatically have permission to perform financial or security-sensitive actions.
+
+Example:
+
+Support Agent
+      ↓
+Request Action
+      ↓
+Permission Check
+      ↓
+Authorized?
+   ↙       ↘
+ NO        YES
+ ↓          ↓
+Reject     Process
+
+High-risk actions may require additional approval.
+
+---
+
+# 59. Financial Support Workflow
+
+Financial-related tickets may follow:
+
+User Complaint
+      ↓
+Ticket Created
+      ↓
+Transaction Lookup
+      ↓
+Verification
+      ↓
+Investigation
+      ↓
+Finance Review
+      ↓
+Resolution
+      ↓
+Customer Notification
+
+Financial support actions shall remain consistent with the authoritative ledger.
+
+---
+
+# 60. Transaction Reference
+
+Users should be able to reference a transaction in a support ticket.
+
+Example:
+
+Transaction ID:
+TXN-2026-00001234
+
+The system may automatically display limited transaction information to authorized agents.
+
+Sensitive financial information shall be masked where necessary.
+
+---
+
+# 61. Job Support Workflow
+
+Job-related support tickets may reference:
+
+- Job ID
+- Employer ID
+- Worker ID
+- Submission ID
+- Reward
+- Status
+- Review Result
+
+Example:
+
+Job
+ ↓
+Submission
+ ↓
+Verification
+ ↓
+Issue
+ ↓
+Support Ticket
+
+---
+
+# 62. Referral Support
+
+Referral-related tickets may reference:
+
+- Referral ID
+- Referrer
+- Referred User
+- Eligibility Status
+- Reward Status
+- Validation Period
+
+Referral information shall only be visible according to permission rules.
+
+---
+
+# 63. Account Support
+
+Account-related tickets may include:
+
+- Login Problem
+- Password Problem
+- Email Change
+- Phone Change
+- Account Verification
+- Account Restriction
+- Account Recovery
+
+Account recovery procedures shall follow security requirements.
+
+---
+
+# 64. Security Support
+
+Security-related tickets shall receive appropriate priority and access controls.
+
+Possible issues:
+
+- Suspicious Login
+- Unauthorized Activity
+- Account Takeover
+- Credential Compromise
+- Security Alert
+- Suspicious Transaction
+
+Security tickets may be automatically routed to the security team.
+
+---
+
+# 65. Abuse Reporting
+
+Users may report:
+
+- Spam
+- Harassment
+- Fraudulent Activity
+- Fake Jobs
+- Suspicious Users
+- Malicious Content
+- Policy Violations
+
+Abuse reports shall be handled through controlled workflows.
+
+---
+
+# 66. Complaint Management
+
+The platform shall support formal complaints.
+
+Complaint
+ ↓
+Classification
+ ↓
+Investigation
+ ↓
+Review
+ ↓
+Decision
+ ↓
+Resolution
+ ↓
+Closure
+
+Complaints may require additional review and audit records.
+
+---
+
+# 67. Complaint Priority
+
+Complaints may be prioritized based on:
+
+- Severity
+- Financial Impact
+- User Impact
+- Repetition
+- Regulatory Relevance
+- Security Risk
+
+---
+
+# 68. Customer Communication Templates
+
+The platform may provide approved response templates.
+
+Examples:
+
+- Ticket Received
+- Additional Information Required
+- Payment Under Investigation
+- Withdrawal Delayed
+- Issue Resolved
+- Ticket Closed
+- Escalation Notice
+
+Templates should be reviewed by authorized administrators.
+
+---
+
+# 69. Template Variables
+
+Support templates may support variables.
+
+Example:
+
+Hello {{user_name}},
+
+Your ticket {{ticket_id}} has been updated.
+
+Status:
+{{ticket_status}}
+
+Variables shall be validated before sending.
+
+---
+
+# 70. Canned Responses
+
+Agents may use predefined responses for common questions.
+
+Examples:
+
+- Password Reset Instructions
+- Deposit Processing Information
+- Withdrawal Processing Information
+- Job Submission Instructions
+- Account Verification Instructions
+
+Agents should be able to customize the response when necessary.
+
+---
+
+# 71. Knowledge Base
+
+The platform shall provide a Knowledge Base for self-service support.
+
+Knowledge Base may contain:
+
+- Guides
+- Tutorials
+- FAQs
+- Troubleshooting Articles
+- Policy Information
+- Payment Information
+- Account Help
+
+---
+
+# 72. Knowledge Base Categories
+
+Knowledge Base content may be categorized into:
+
+- Account
+- Wallet
+- Payments
+- Jobs
+- Referral
+- Marketplace
+- Security
+- Technical
+- General
+
+---
+
+# 73. Knowledge Base Search
+
+Users shall be able to search Knowledge Base content.
+
+Search may consider:
+
+- Title
+- Keywords
+- Category
+- Tags
+- Article Content
+
+Search results shall prioritize relevant content.
+
+---
+
+# 74. Self-Service Support
+
+The platform should encourage users to resolve common issues without creating a ticket.
+
+User Problem
+      ↓
+Search Help Center
+      ↓
+Relevant Article
+      ↓
+Problem Solved?
+
+YES → End
+
+NO → Create Ticket
+
+---
+
+# 75. Part 2 Completion Standard
+
+Part 2 shall be considered complete when:
+
+- SLA rules are implemented
+- SLA timers are supported
+- SLA warnings are available
+- SLA breaches are tracked
+- Escalation is supported
+- Manual escalation is available
+- Automatic escalation is supported
+- Ticket reopening is supported
+- Duplicate tickets can be identified
+- Ticket merging is supported
+- Ticket linking is supported
+- Parent/child tickets are supported
+- Identity verification rules are defined
+- Sensitive support actions are protected
+- Financial support workflows are defined
+- Security support workflows are defined
+- Complaint management is supported
+- Response templates are supported
+- Canned responses are supported
+- Knowledge Base is available
+- Self-service support is supported
+
+# End of Chapter 19 – Part 2
