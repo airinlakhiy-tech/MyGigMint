@@ -1,5 +1,5 @@
 # MyGigMint – Functional Requirements
-
+ 
 **Document Version:** 1.0  
 **Document Type:** Functional Requirements Specification (FRS)  
 **Project:** MyGigMint
