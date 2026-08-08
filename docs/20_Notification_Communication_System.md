@@ -784,3 +784,85 @@ Resolved
    ↓
 Closed
 Agent is typing...
+# Chapter 20 – Notification, Communication & Messaging System
+
+# Part 5 – Sections 156–195
+
+# 156. Message Search and Indexing
+
+The platform shall provide efficient search across authorized communication records.
+
+Search may include:
+
+- Conversation
+- Sender
+- Recipient
+- Keyword
+- Message Type
+- Date Range
+- Attachment
+- Ticket Reference
+
+Search results shall only include information the requesting user is authorized to access.
+
+---
+
+# 157. Message Indexing
+
+Messages may be indexed for efficient retrieval.
+
+The indexing system may maintain:
+
+- Message ID
+- Conversation ID
+- Sender ID
+- Timestamp
+- Searchable Content
+- Message Type
+- Reference ID
+
+Sensitive fields shall be protected.
+
+---
+
+# 158. Search Permissions
+
+Search functionality shall respect:
+
+- User Permissions
+- Conversation Membership
+- Department Access
+- Role Restrictions
+- Data Retention Rules
+
+Unauthorized messages shall never appear in search results.
+
+---
+
+# 159. Advanced Search
+
+Authorized users may search using multiple criteria.
+
+Example:
+
+```text
+Keyword
++
+Date Range
++
+Sender
++
+Conversation
+=
+Filtered Results
+Notification Queue
+       ↓
+Retry
+       ↓
+Retry
+       ↓
+Retry Limit
+       ↓
+Dead-Letter Queue
+       ↓
+Investigation
