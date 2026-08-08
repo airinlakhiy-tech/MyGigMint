@@ -3188,3 +3188,103 @@ Part 5 shall be considered complete when:
 
 # End of Chapter 19 – Part 5
 
+# Chapter 19 – Support, Helpdesk, Ticketing & Customer Service System
+# Part 6 – Sections 196–235
+
+# 196. Support Security Overview
+
+The Support System shall implement security controls to protect:
+
+- Customer Information
+- Ticket Information
+- Internal Notes
+- Attachments
+- Financial References
+- Account Information
+- Support Agent Information
+- Audit Records
+
+All support access shall follow role-based permissions and security policies.
+
+---
+
+# 197. Support Role-Based Access Control
+
+Support functionality shall use RBAC.
+
+Possible roles:
+
+- Customer
+- Support Agent
+- Senior Support Agent
+- Support Manager
+- Finance Support
+- Technical Support
+- Security Support
+- Compliance Support
+- Administrator
+
+Each role shall have limited access according to responsibility.
+
+---
+
+# 198. Ticket-Level Access Control
+
+Tickets shall only be visible to authorized users.
+
+Customer
+   ↓
+Own Tickets
+
+Support Agent
+   ↓
+Assigned / Authorized Tickets
+
+Manager
+   ↓
+Department Tickets
+
+Administrator
+   ↓
+Authorized Administrative Access
+
+---
+
+# 199. Department-Level Access
+
+Sensitive tickets may be restricted to specific departments.
+
+Examples:
+
+Security Ticket
+      ↓
+Security Team
+
+Finance Ticket
+      ↓
+Finance Team
+
+Compliance Ticket
+      ↓
+Compliance Team
+
+---
+
+# 200. Sensitive Data Masking
+
+Sensitive information shall be masked when full information is not required.
+
+Possible masked data:
+
+- Payment Account
+- Phone Number
+- Email
+- Identity Information
+- Transaction Information
+
+Example:
+
+```text
++8801**********
+user****@example.com
+TXN-2026-********
