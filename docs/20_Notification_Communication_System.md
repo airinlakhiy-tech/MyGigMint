@@ -316,3 +316,471 @@ POST   /notifications/read-all
 DELETE /notifications/{id}
 GET    /notification-preferences
 PUT    /notification-preferences
+# Chapter 20 – Notification, Communication & Messaging System
+
+# Part 3 – Sections 76–115
+
+# 76. Notification Campaign Management
+
+The platform may support notification campaigns for approved communication purposes.
+
+Campaign information may include:
+
+- Campaign ID
+- Campaign Name
+- Campaign Type
+- Audience
+- Channels
+- Message Template
+- Start Time
+- End Time
+- Status
+- Created By
+- Approved By
+
+Campaigns shall be permission-controlled.
+
+---
+
+# 77. Campaign Status
+
+Notification campaigns may use the following statuses:
+
+- Draft
+- Pending Review
+- Approved
+- Scheduled
+- Running
+- Paused
+- Completed
+- Cancelled
+- Failed
+
+Only approved campaigns may be executed.
+
+---
+
+# 78. Campaign Audience
+
+Campaigns may target:
+
+- Individual Users
+- User Groups
+- Workers
+- Employers
+- Premium Users
+- Verified Users
+- Active Users
+- Inactive Users
+
+Audience selection shall respect privacy and authorization rules.
+
+---
+
+# 79. Audience Segmentation
+
+The platform may support audience segmentation based on configurable attributes.
+
+Examples:
+
+- Account Type
+- User Status
+- Activity
+- Registration Date
+- Subscription
+- Geographic Eligibility
+- Notification Preference
+
+Sensitive attributes shall not be used for targeting unless explicitly permitted by applicable policy and law.
+
+---
+
+# 80. Campaign Preview
+
+Before sending a campaign, authorized users shall be able to preview the message.
+
+Preview may show:
+
+- Email Version
+- SMS Version
+- Push Version
+- In-App Version
+
+Dynamic variables shall be rendered using safe test data.
+
+---
+
+# 81. Campaign Approval
+
+High-volume or marketing campaigns may require approval.
+
+Draft
+ ↓
+Review
+ ↓
+Approval
+ ↓
+Schedule
+ ↓
+Send
+
+Approval records shall be auditable.
+
+---
+
+# 82. Campaign Scheduling
+
+Campaigns may be scheduled for a future date and time.
+
+Campaign
+ ↓
+Schedule
+ ↓
+Waiting
+ ↓
+Execution Time
+ ↓
+Send
+
+Scheduling shall support user time zones where appropriate.
+
+---
+
+# 83. Campaign Pause
+
+Authorized administrators may pause an active campaign.
+
+Running
+ ↓
+Pause
+ ↓
+Paused
+
+Paused campaigns shall not send additional messages until resumed.
+
+---
+
+# 84. Campaign Resume
+
+An authorized administrator may resume a paused campaign.
+
+Paused
+ ↓
+Resume
+ ↓
+Running
+ ↓
+Continue Delivery
+
+Previously delivered messages shall not be duplicated.
+
+---
+
+# 85. Campaign Cancellation
+
+Authorized users may cancel scheduled or paused campaigns.
+
+Cancelled campaigns shall not be executed after cancellation.
+
+---
+
+# 86. Campaign Delivery Limits
+
+Campaigns shall support configurable delivery limits.
+
+Possible controls:
+
+- Messages Per Minute
+- Messages Per Hour
+- Maximum Recipients
+- Channel Limit
+- Daily Campaign Limit
+
+---
+
+# 87. Campaign Frequency Rules
+
+The system shall prevent excessive campaign communication.
+
+Possible rules:
+
+- Maximum Marketing Emails Per Day
+- Maximum Push Notifications Per Day
+- Maximum SMS Per Week
+- Minimum Time Between Campaigns
+
+---
+
+# 88. Marketing Consent
+
+Marketing communications shall respect user consent and applicable requirements.
+
+Possible states:
+
+- Opted In
+- Opted Out
+- Not Specified
+
+Transactional and security communications may follow separate mandatory rules.
+
+---
+
+# 89. Unsubscribe
+
+Marketing messages shall provide an appropriate unsubscribe mechanism.
+
+User
+ ↓
+Unsubscribe
+ ↓
+Preference Updated
+ ↓
+Future Marketing Messages Suppressed
+
+---
+
+# 90. Global Suppression
+
+The system may maintain a global suppression list.
+
+Suppression reasons may include:
+
+- Unsubscribe
+- Spam Complaint
+- Hard Bounce
+- Invalid Contact
+- Administrative Restriction
+
+---
+
+# 91. Campaign Analytics
+
+Campaign analytics may include:
+
+- Sent
+- Delivered
+- Failed
+- Opened
+- Clicked
+- Unsubscribed
+- Complained
+- Converted
+
+Available metrics shall depend on the communication channel.
+
+---
+
+# 92. Email Open Tracking
+
+Where technically and legally appropriate, email opens may be tracked.
+
+Open tracking data shall be treated as approximate and shall not be considered perfectly accurate.
+
+---
+
+# 93. Link Click Tracking
+
+Campaign links may include tracking parameters.
+
+Campaign
+ ↓
+Tracked Link
+ ↓
+User Click
+ ↓
+Event Recorded
+
+Tracking must follow applicable privacy requirements.
+
+---
+
+# 94. Campaign Conversion
+
+Campaigns may optionally measure conversions.
+
+Example:
+
+Notification
+ ↓
+Click
+ ↓
+Landing Page
+ ↓
+Action
+ ↓
+Conversion
+
+Conversion definitions shall be explicitly configured.
+
+---
+
+# 95. Campaign A/B Testing
+
+The platform may support controlled A/B testing.
+
+Version A
+      ↘
+       Audience
+      ↗
+Version B
+
+Performance may be compared using predefined metrics.
+
+---
+
+# 96. A/B Test Rules
+
+A/B tests may define:
+
+- Variants
+- Audience Split
+- Test Duration
+- Primary Metric
+- Minimum Sample Size
+- Winner Criteria
+
+---
+
+# 97. Campaign Templates
+
+Reusable campaign templates may be created.
+
+Template may contain:
+
+- Subject
+- Message
+- Image
+- Button
+- Link
+- Variables
+- Channel Configuration
+
+---
+
+# 98. Notification Content Validation
+
+Before delivery, notification content shall be validated.
+
+Validation may include:
+
+- Required Variables
+- Length Limits
+- Invalid Links
+- Unsupported Characters
+- Channel Restrictions
+- Security Sanitization
+
+---
+
+# 99. SMS Length Management
+
+SMS messages shall respect provider and carrier length restrictions.
+
+Long messages may be split where supported.
+
+Sensitive information should be minimized.
+
+---
+
+# 100. Push Payload
+
+Push notifications may contain:
+
+- Title
+- Body
+- Icon
+- Deep Link
+- Notification ID
+- Metadata
+
+Payloads shall avoid unnecessary sensitive information.
+
+---
+
+# 101. In-App Banner Notifications
+
+The platform may display notification banners for important events.
+
+Examples:
+
+- Maintenance
+- Security Warning
+- Important Policy Update
+- Service Announcement
+
+---
+
+# 102. Notification Modal
+
+Critical platform announcements may use modal notifications.
+
+Modal display rules shall prevent excessive interruption.
+
+---
+
+# 103. Announcement Management
+
+Administrators may create platform announcements.
+
+Announcement may include:
+
+- Title
+- Content
+- Audience
+- Start Date
+- End Date
+- Priority
+- Display Channel
+
+---
+
+# 104. Announcement Lifecycle
+
+Announcement
+ ↓
+Draft
+ ↓
+Review
+ ↓
+Approved
+ ↓
+Published
+ ↓
+Expired / Archived
+
+---
+
+# 105. Notification Banner Priority
+
+Announcements may have priority levels:
+
+- Informational
+- Important
+- Warning
+- Critical
+
+Critical announcements should be used sparingly.
+
+---
+
+# 106. Communication Preferences API
+
+The platform shall provide secure APIs for managing communication preferences.
+
+Possible operations:
+
+```text
+GET    /communication-preferences
+PUT    /communication-preferences
+POST   /communication-preferences/subscribe
+POST   /communication-preferences/unsubscribe
+Created
+   ↓
+Active
+   ↓
+Waiting
+   ↓
+Resolved
+   ↓
+Closed
+Agent is typing...
