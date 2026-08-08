@@ -1163,3 +1163,691 @@ Part 2 shall be considered complete when:
 - Self-service support is supported
 
 # End of Chapter 19 – Part 2
+# Chapter 19 – Support, Helpdesk, Ticketing & Customer Service System
+# Part 3 – Sections 76–115
+
+# 76. Knowledge Base Article Management
+
+Authorized administrators shall be able to create and manage Knowledge Base articles.
+
+Article information may include:
+
+- Article ID
+- Title
+- Description
+- Category
+- Tags
+- Author
+- Status
+- Version
+- Created Date
+- Updated Date
+- Publication Date
+
+---
+
+# 77. Knowledge Base Article Status
+
+Articles may have the following statuses:
+
+- Draft
+- Under Review
+- Approved
+- Published
+- Unpublished
+- Archived
+
+Only approved articles shall be published to customers.
+
+---
+
+# 78. Knowledge Base Approval
+
+Knowledge Base content may require an approval workflow.
+
+Draft
+ ↓
+Review
+ ↓
+Approval
+ ↓
+Publish
+
+Rejected content shall return to the appropriate editor for revision.
+
+---
+
+# 79. Knowledge Base Versioning
+
+Articles shall support version history.
+
+Article v1
+   ↓
+Article v2
+   ↓
+Article v3
+
+The system should retain previous versions according to retention policy.
+
+---
+
+# 80. Knowledge Base Feedback
+
+Users may provide feedback about articles.
+
+Possible feedback:
+
+- Helpful
+- Not Helpful
+- Rating
+- Comment
+
+Example:
+
+Was this article helpful?
+
+Yes / No
+
+---
+
+# 81. Knowledge Base Analytics
+
+The system may track:
+
+- Article Views
+- Searches
+- Helpful Votes
+- Unhelpful Votes
+- Search Failures
+- Ticket Creation After Article View
+
+This data may be used to improve self-service support.
+
+---
+
+# 82. Failed Help Searches
+
+The platform may record searches that produce no useful result.
+
+Search Query
+     ↓
+No Relevant Article
+     ↓
+Record Search
+     ↓
+Analyze
+     ↓
+Create New Article
+
+---
+
+# 83. Support Chat
+
+The platform may provide real-time customer support chat.
+
+User
+ ↓
+Open Chat
+ ↓
+Queue
+ ↓
+Agent
+ ↓
+Conversation
+ ↓
+Resolution
+
+Chat availability shall depend on configured operating hours and agent availability.
+
+---
+
+# 84. Chat Queue
+
+Users waiting for live support may enter a queue.
+
+Example:
+
+User
+ ↓
+Chat Request
+ ↓
+Queue Position
+ ↓
+Agent Available
+ ↓
+Chat Started
+
+The system may display estimated waiting time.
+
+---
+
+# 85. Chat Assignment
+
+Chat sessions may be assigned using:
+
+- Agent Availability
+- Department
+- Language
+- Skill
+- Workload
+- Priority
+
+---
+
+# 86. Chat Session Lifecycle
+
+A chat session may follow:
+
+Requested
+ ↓
+Queued
+ ↓
+Assigned
+ ↓
+Active
+ ↓
+Waiting
+ ↓
+Resolved
+ ↓
+Closed
+
+---
+
+# 87. Chat History
+
+Authorized users and agents may access relevant chat history.
+
+Chat history may include:
+
+- Messages
+- Timestamps
+- Agent
+- User
+- Attachments
+- System Events
+
+Sensitive information shall be protected.
+
+---
+
+# 88. Chat-to-Ticket Conversion
+
+A chat session may be converted into a support ticket.
+
+Chat
+ ↓
+Issue Requires Investigation
+ ↓
+Create Ticket
+ ↓
+Attach Chat Context
+ ↓
+Ticket Created
+
+The system should preserve relevant conversation history.
+
+---
+
+# 89. Offline Support
+
+When live chat is unavailable, users may submit a support request.
+
+Live Chat Unavailable
+        ↓
+Show Contact Form
+        ↓
+Create Ticket
+        ↓
+Confirmation
+
+---
+
+# 90. Support Operating Hours
+
+Administrators may configure support hours.
+
+Configuration may include:
+
+- Day
+- Opening Time
+- Closing Time
+- Time Zone
+- Holiday
+- Special Schedule
+
+---
+
+# 91. Holiday Schedule
+
+The support system may support holiday schedules.
+
+During holidays:
+
+- Live Chat may be unavailable
+- SLA rules may pause
+- Emergency support may remain available
+- Automated responses may be enabled
+
+---
+
+# 92. Automated Support Assistant
+
+The platform may provide an automated support assistant for common questions.
+
+User
+ ↓
+Support Assistant
+ ↓
+Intent Detection
+ ↓
+Knowledge Base
+ ↓
+Answer
+
+If the assistant cannot resolve the issue, it may recommend creating a ticket.
+
+---
+
+# 93. Automated Assistant Limitations
+
+The automated assistant shall not perform sensitive financial or account actions unless explicitly authorized and securely integrated.
+
+Examples of restricted actions:
+
+- Changing Account Ownership
+- Changing Payment Credentials
+- Approving Withdrawals
+- Modifying Ledger Entries
+- Removing Security Restrictions
+
+---
+
+# 94. Human Handoff
+
+Users shall be able to request human support.
+
+Assistant
+   ↓
+User Requests Agent
+   ↓
+Create / Transfer
+   ↓
+Human Agent
+
+Relevant conversation context should be transferred to the agent where appropriate.
+
+---
+
+# 95. Automated Response Logging
+
+Automated support interactions may be logged.
+
+Logs may include:
+
+- Session ID
+- User ID
+- Question
+- Response
+- Knowledge Article
+- Timestamp
+- Handoff Status
+
+Sensitive data shall be handled according to privacy rules.
+
+---
+
+# 96. Support Email Integration
+
+The platform may support email-based ticket creation.
+
+Customer Email
+      ↓
+Support Email Address
+      ↓
+Email Processing
+      ↓
+Ticket Creation
+      ↓
+Confirmation
+
+Email messages shall be validated and associated with the appropriate account where possible.
+
+---
+
+# 97. Email Reply Processing
+
+Customer replies to support emails may automatically update the corresponding ticket.
+
+Ticket Email
+      ↓
+Reply Received
+      ↓
+Ticket Identification
+      ↓
+Message Added
+      ↓
+Agent Notification
+
+---
+
+# 98. Email Security
+
+Support email processing shall protect against:
+
+- Spam
+- Malicious Attachments
+- Spoofing
+- Unauthorized Ticket Access
+- Header Injection
+- Phishing Content
+
+---
+
+# 99. Spam Protection
+
+The support system shall implement anti-spam controls.
+
+Possible controls:
+
+- Rate Limiting
+- CAPTCHA
+- Duplicate Detection
+- Email Filtering
+- IP Reputation
+- Account-Based Limits
+
+---
+
+# 100. Abuse Prevention
+
+Users who repeatedly abuse the support system may be restricted according to policy.
+
+Possible abuse:
+
+- Excessive Ticket Creation
+- Spam Messages
+- Malicious Attachments
+- Harassment
+- Automated Ticket Flooding
+
+Restrictions shall be documented and auditable.
+
+---
+
+# 101. Ticket Creation Limits
+
+The platform may limit ticket creation based on:
+
+- User
+- IP
+- Device
+- Time Period
+- Category
+
+Limits should prevent abuse without unnecessarily blocking legitimate support requests.
+
+---
+
+# 102. Support Customer Identification
+
+Support agents shall be able to identify the customer associated with a ticket.
+
+Information may include:
+
+- User ID
+- Account Status
+- Verification Status
+- Relevant Ticket History
+- Limited Transaction References
+
+Agents shall only access information permitted by their role.
+
+---
+
+# 103. Customer Support Profile
+
+The platform may provide a support profile containing relevant information.
+
+Example:
+
+Customer
+ ↓
+Account Information
+ ↓
+Open Tickets
+ ↓
+Recent Support History
+ ↓
+Relevant Activity
+
+Sensitive information shall remain protected.
+
+---
+
+# 104. Customer Ticket History
+
+Authorized agents may view previous tickets.
+
+History may include:
+
+- Ticket ID
+- Category
+- Status
+- Priority
+- Created Date
+- Resolution
+- Assigned Team
+
+---
+
+# 105. Customer Communication Preferences
+
+Users may configure support communication preferences where supported.
+
+Possible preferences:
+
+- Email
+- Push Notification
+- SMS
+- In-App Notification
+
+Critical security or account notifications may remain mandatory.
+
+---
+
+# 106. Support Language
+
+The support system may support multiple languages.
+
+Possible language selection:
+
+- English
+- বাংলা
+- Other Configured Languages
+
+Support articles and templates may have localized versions.
+
+---
+
+# 107. Localization
+
+Localized support content may include:
+
+- Article Titles
+- Article Content
+- Ticket Forms
+- Response Templates
+- Notifications
+- FAQ Content
+
+If a translation is unavailable, the system may display the default language.
+
+---
+
+# 108. Support Form Validation
+
+Ticket forms shall validate user input.
+
+Validation may include:
+
+- Required Fields
+- Character Limits
+- Valid References
+- Attachment Limits
+- Allowed File Types
+- Input Sanitization
+
+Invalid submissions shall return clear error messages.
+
+---
+
+# 109. Support Form Custom Fields
+
+Administrators may configure custom ticket fields.
+
+Examples:
+
+- Transaction ID
+- Job ID
+- Payment Provider
+- Error Code
+- Account Type
+- Product ID
+
+Custom fields may vary by ticket category.
+
+---
+
+# 110. Dynamic Support Forms
+
+Different categories may display different fields.
+
+Example:
+
+Withdrawal Issue
+ ↓
+Amount
+ ↓
+Transaction ID
+ ↓
+Payment Method
+ ↓
+Issue Description
+
+Job Issue
+ ↓
+Job ID
+ ↓
+Submission ID
+ ↓
+Issue Description
+
+---
+
+# 111. Support Automation Rules
+
+Administrators may configure automation rules.
+
+Example:
+
+New Withdrawal Ticket
+      ↓
+Category = Withdrawal
+      ↓
+Assign Finance Queue
+      ↓
+Priority = High
+      ↓
+Start SLA
+
+---
+
+# 112. Automated Ticket Classification
+
+The platform may classify tickets automatically using configured rules or intelligent classification.
+
+Possible classification signals:
+
+- Category
+- Keywords
+- Form Data
+- User Selection
+- Transaction Type
+- Issue Type
+
+Automated classification should remain reviewable by authorized agents.
+
+---
+
+# 113. Automated Ticket Routing
+
+After classification, tickets may be routed automatically.
+
+Ticket
+ ↓
+Classification
+ ↓
+Department
+ ↓
+Queue
+ ↓
+Agent
+
+Routing rules shall be configurable.
+
+---
+
+# 114. Support Automation Audit
+
+Automated support actions shall be logged.
+
+Examples:
+
+- Automatic Classification
+- Automatic Assignment
+- Automatic Priority Change
+- Automatic Escalation
+- Automatic Notification
+- Automatic Closure
+
+Logs shall identify the rule or automation process responsible for the action.
+
+---
+
+# 115. Part 3 Completion Standard
+
+Part 3 shall be considered complete when:
+
+- Knowledge Base is implemented
+- Articles can be created and managed
+- Article approval is supported
+- Article versioning is supported
+- Article feedback is available
+- Knowledge Base analytics are available
+- Failed searches are tracked
+- Live chat is supported
+- Chat queues are available
+- Chat assignment is supported
+- Chat history is retained securely
+- Chat-to-ticket conversion is supported
+- Offline support is available
+- Support hours are configurable
+- Holiday schedules are supported
+- Automated support is available
+- Human handoff is supported
+- Email ticketing is supported
+- Email replies can update tickets
+- Spam protection is implemented
+- Abuse prevention is implemented
+- Ticket creation limits are configurable
+- Customer support profiles are available
+- Support history is accessible according to permissions
+- Localization is supported
+- Dynamic ticket forms are supported
+- Support automation rules are supported
+- Automated classification is supported
+- Automated routing is supported
+- Automation auditing is implemented
+
+# End of Chapter 19 – Part 3
